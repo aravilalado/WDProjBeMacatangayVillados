@@ -1,7 +1,7 @@
-# Macatangay and Villados Project Proposal
+### Macatangay and Villados Project Proposal
 ---
-##Title
-###Logo
+# Title
+### Logo
 ![alt text](link)
 
 ##Description
@@ -9,19 +9,20 @@ BLAH BLAH BLAH
 ---
 
 ## Webpage Breakdown
-### Home Page: 
 
-### P1 (): 
+#### Homepage:
 
-### P2 ():
+#### P1 (): 
 
-### P3 (): 
+#### P2 ():
 
-### P4 (): 
+#### P3 (): 
 
-### P5 ():
+#### P4 (): 
 
-### P6 (Sources): 
+#### P5 ():
+
+#### P6 (Sources): 
 ---
 ## Other Notes:
 
