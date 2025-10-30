@@ -1,7 +1,7 @@
 ### Macatangay and Villados Project Proposal
 ---
   # Whispers of Ghibli ୭ .ᐟ.ᐟ
-
+###"Where Magic Meets Hand-Drawn Wonder" 
 
 | Logo                                                                                                 | Description                                                                                      |
 | ------------- |:-------------:|
