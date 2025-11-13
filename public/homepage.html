@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whispers of Ghibli</title>
+  <link rel="stylesheet" href="./style..css"/>
+</head>
+
+<body>
+
+  <!-- NAVIGATION (GRID)-->
+ <nav class="top-nav">
+       <table>
+        <tr>
+            <td><!-- Logo -->
+                <img src="https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/assets/totoro%20logo.webp?raw=true" alt="logo placeholder" style="height: 100px; width:110px;">
+            </td>
+            <td> <!-- Title + Subtitle -->
+                <div class="title-container">
+                    <h1>WHISPERS OF GHIBLI</h1>
+                    <p>Homepage</p>
+                </div>  
+            </td>
+            <td><!-- Icon row -->
+                <div class="icon-row">
+                    <img src="https://i.pinimg.com/736x/6c/89/36/6c8936ddebe7270810a6558e4a9f9412.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/736x/fe/d4/df/fed4dfee7cc6e77a48f3ce15c642138a.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/736x/00/5e/09/005e0980a547238b24b66a327de81814.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/1200x/1c/25/32/1c253238c6e4982a5a15be40f8f24d90.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/736x/03/ad/88/03ad88c6fb6888ef14e2bd70dc91e9dc.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/736x/4c/74/22/4c74222a167d5de9531ef17d41a5f214.jpg" alt="icon" style="width: 70px; height: 70px;">
+                    <img src="https://i.pinimg.com/1200x/78/3e/c2/783ec219e5a8d9ad05c8537b051f6dfd.jpg" alt="icon" style="width: 70px; height: 70px;">
+                </div>
+            </td>
+        </tr>
+       </table>
+</nav>
+
+  <!-- Divider line -->
+  <div class="nav-divider"></div>
+
+
+  <!-- HERO SECTION-->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="https://via.placeholder.com/1600x650" alt="GIF placeholder">
+      <h2>WHISPERS OF GHIBLI</h2>
+      <p class="bg-caption">background_gif_image</p>
+    </div>
+  </section>
+
+
+  <!-- LOWER CONTENT SCROLL ACTIVATED SANA -->
+  <section class="scroll-content">
+
+    <!-- First row -->
+    <div class="grid-row scroll-reveal">
+      <p class="block-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat nunc ut lorem rutrum congue.
+        Maecenas maximus est molestie sapien sollicitudin, nec venenatis ligula dignissim. Nullam tincidunt
+        turpis id viverra venenatis. Sed finibus ac arcu et elementum. Nam eget varius libero. Integer eros
+        sem. Malesuada nec lectus quis erat. Proin blandit justo nec dapibus.
+      </p>
+
+      <div class="img-box">
+        <img src="https://via.placeholder.com/500x350" alt="placeholder">
+      </div>
+    </div>
+
+
+    <!-- Second row -->
+    <div class="grid-row scroll-reveal">
+
+      <div class="img-box sprite-box">
+        <img src="https://via.placeholder.com/240x240" alt="sprite placeholder">
+        <p class="sprite-caption">- animated sprite (using sprite sheets | frame-by-frame animation)</p>
+      </div>
+
+      <p class="block-text">
+        Sed eget tempor sem. In suscipit congue justo congue tincidunt. Etiam lectus quam, euismod et
+        suscipit nec, dictum quis quam. Nullam luctus interdum ante. Sed suscipit leo auctor eget. Aliquam
+        consectetur interdum lacus, eget congue nibh convallis.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <footer class="footer">
+    <p>© 2025 Whispers of Ghibli</p>
+  </footer>
+
+
+  <!-- SCROLL REVEAL LOGIC -->
+  <script>
+    const revealElems = document.querySelectorAll(".scroll-reveal");
+
+    function revealOnScroll() {
+      const t = window.innerHeight * 0.8;
+      revealElems.forEach(el => {
+        if (el.getBoundingClientRect().top < t) el.classList.add("show");
+      });
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  </script>
+
+</body>
+</html>
