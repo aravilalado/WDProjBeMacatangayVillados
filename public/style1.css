@@ -1,6 +1,4 @@
-/* =======================
-   GLOBAL RESET
-   ======================= */
+
 *,
 *::before,
 *::after {
@@ -16,13 +14,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/e20a1af8daea8f2a9f62fc383a79c1e44854f481/backgrounds/homepage%20background.gif'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+  height: 100vh; 
+  margin: 0;
+  overflow: hidden; 
 }
 
-/* =======================
-   NAV (GRID)
-   Matches 3-column
-   wireframe layout
-   ======================= */
+/* NAV (GRID) */
 .top-nav {
   width: 1600px;
   height: 135px;
@@ -95,10 +96,7 @@ body {
   padding-top: 140px;
 }
 
-/* =======================
-   HERO SECTION
-   pixel-based layout
-   ======================= */
+/* lalalala */
 .hero {
   margin-top: 20px;
   width: 1300px;
