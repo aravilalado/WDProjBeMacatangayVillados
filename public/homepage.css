@@ -8,6 +8,30 @@ html {
     font-size: 150%;
 }
 
+a {
+  color: inherit;     
+  text-decoration: none;  
+  position: relative;    
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '✨';  
+  position: absolute;
+  right: -1.2em;      
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+a:hover::after {
+  transform: translateY(-50%) scale(1);
+  opacity: 1;
+}
+
+
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
