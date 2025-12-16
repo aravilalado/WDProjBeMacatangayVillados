@@ -2,6 +2,7 @@
 ---
   # Whispers of Ghibli ୭ .ᐟ.ᐟ
 ### "Where Magic Meets Hand-Drawn Wonder" 
+https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html
 
 | Logo                                                                                                 | Description                                                                                      |
 | ------------- |:-------------:|
