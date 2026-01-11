@@ -28,8 +28,8 @@ https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html
 - Content: History of Studio Ghibli, founder bios (directors Hayao Miyazaki and Isao Takahata and producer Toshio Suzuki), hand-drawn animation techniques, production insights, creative processes, 	and behind-the-scenes images.
 - JS Features: Timeline scroll feature for historical milestones,Flipbook-style creative process (A Ghibli character illustration gradually completes as the user scrolls or clicks through steps in the creative pipeline), Expandable bio cards for Miyazaki, Takahata, Suzuki, Interactive behind-the-scenes gallery (Hover to transform sketches → finished art title text animations), title text animations
 
-#### P4 (Interactive) -- "The Ghilbi Realm": 
-- Content: Mini interactive experiences inspired by Ghibli films (e.g., drag-and-drop Totoro leaves, click to reveal hidden creatures, links to quizzes and the ghibli museum, character dress-up, or switch UI themes). Includes a secret pop-up of a delivery from Kiki. 
+#### P4 (Interactive) -- "The Ghilbi Realm Entry": 
+- Content: Mini interactive experiences inspired by Ghibli films (e.g., drag-and-drop Totoro leaves, click to reveal hidden creatures, links to quizzes and the ghibli museum, character dress-up, or switch UI themes). Includes a secret pop-up of a delivery from Kiki. Will also be used as a preferences/log-in page
 - JS Features: The interactive elements are all javascript, Drag-and-drop Totoro leaf/soot sprites, Click-to-reveal hidden creatures (Kodama rustling, soot sprites popping out), Animated floating elements (leaves drifting, fireflies glowing), Secret popup: “Delivery from Kiki” (Appears randomly or when triggered by user action), Sound toggle for ambience (forest, soft wind, chimes), Title text animation (fade-in, typewriter effect), Canvas particle animation — falling leaves / soot, Hover animations (characters react when hovered)
   
 #### P5 (Trivia & Easter Eggs – “Hidden Whispers”):
@@ -42,8 +42,64 @@ https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html
 
   
 ---
-## Other Notes:
-- Might try to include a little totoro/ponyo/jiji animated sprite (using sprite sheets / Frame-by-Frame Animation ) at the bottom corner
+## Updated Project Proposal: HTML Forms Integration
+###### pages 4-6 will be the 3 updated websites for this integration but all 6 webpages would be affected. Some aspects of page 4 was changed to better fit the integration
+
+### Overview of the Update
+To enhance interactivity, inclusivity, and personalization of the site, the website will incorporate an HTML form that collects user input and saves it on the user’s computer using JavaScript and localStorage. The collected data will then be used dynamically across at least two other webpages, making the website feel more immersive and responsive to each user.
+The form will align with the magical, cozy, and whimsical Studio Ghibli theme of the site.
+
+The HTML form will serve as a Visitor Passport / Realm Entry Form, allowing users to:
+- Enter a display name
+- Choose their favorite Ghibli film or realm
+- Select preferred interactive features (trivia, ambience sounds, mini-games)
+- Opt in to easter eggs and hidden/exclusive content
+Provided nformation will be used to personalize interactions, unlock special effects, and track progress across the website/s.
+
+#### P4 – The Ghilbi Realm Entry
+
+##### Content & Form Design
+- A themed HTML form styled like a magical passport or letter from Studio Ghibli
+- Input elements:
+Text input: Visitor Name
+Dropdown: Ghibli Realm (which is essentially theme options would be some of the popular movies/characters)
+Checkboxes: Preferred activities (Trivia, Interactive Animations, Sounds)
+Toggle: Enable secret deliveries & easter eggs
+- A “Enter the Realm” button that saves the data to localStorage
+##### Function
+- On submission:
+User data is validated
+Data is saved to the user’s computer
+User is redirected to P1 and allowed access to hidden interactions on P5
+##### Visual feedback:
+- Animated confirmation based on the chosen realm/theme
+
+
+#### P5 – Trivia & Easter Eggs (“Hidden Whispers”)
+#####Use of Stored Data
+- Displays a personalized greeting (e.g., “Welcome back, Ara!”)
+- Trivia questions adapt based on:
+- User’s chosen favorite film
+- Previous trivia progress
+
+##### Progress tracking:
+- Score and discovered secrets saved and retrieved from localStorage. may add a button that shows how many have been discovered over how many are left 
+- Special easter eggs:
+- Certain features unlock only if the user opted in via the form
+- Konami Code triggers extra effects only for registered users
+
+
+#### P6 – Sources + Behind the Website
+##### Use of Stored Data
+- Personalized message thanking the visitor by name
+- Registered users may add comments
+
+##### Displays:
+- How many trivia items or secrets the user has discovered (same as the button)
+- A “journey summary” of their interaction with the site
+
+##### Optional feature:
+- Button to clear saved data (reset progress and preferences)
 
 ---
 ## Wireframes
