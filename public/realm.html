@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whispers of Ghibli</title>
+  <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
+  <link rel="stylesheet" href="realm.css" />
+</head>
+<body>
 
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <h1>Whispers of Ghibli</h1>
+    <div class="bar"><span id="bar-fill"></span></div>
+    <p id="load-percent">0%</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="topbar">
+  <div class="logo">Whispers of Ghibli</div>
+  <ul>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
+    <li><a href="">The Studio</a></li>
+    <li><a href="">Realms</a></li>
+    <li><a href="">Sources</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER CAROUSEL -->
+<section class="header-carousel">
+  <div class="carousel">
+    <div class="carousel-slide"><img src="one.gif" alt="slide1"></div>
+    <div class="carousel-slide"><img src="two.gif" alt="slide2"></div>
+    <div class="carousel-slide"><img src="three.gif" alt="slide3"></div>
+    <div class="carousel-slide"><img src="four.gif" alt="slide4"></div>
+  </div>
+  <h2 class="carousel-header">Icons of Ghibli</h2>
+</section>
+
+<!-- LEAVES -->
+<canvas id="leaves"></canvas>
+
+<!-- FORM -->
+<form method="post" action="submit" onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+
+    <label>
+      Username
+      <input type="text" name="user" required onblur="checkEmpty(this)">
+    </label>
+</br>
+
+    <label>
+      Preferred Name
+      <input type="text" name="name" required onblur="checkEmpty(this)">
+    </label>
+</br>
+
+    <label>
+      Email Address:
+      <input type="email" name="email" required placeholder="user@pshs.edu.ph" onblur="checkEmpty(this)">
+    </label>
+</br>
+
+    <label>
+      Mobile Number:
+      <input type="text" name="MobileNum" required onblur="checkEmpty(this)">
+    </label>
+</br>
+
+    <label>
+      Realm
+      <select name="gradeLevel" required onblur="checkEmpty(this)">
+        <option value="">-- Select --</option>
+        <option>Default</option>
+        <option>Howl’s Moving castle</option>
+        <option>Spirited Away</option>
+        <option>My Neighbor Totoro</option>
+        <option>Ponyo</option>
+        <option>Kiki's Delivery Service</option>
+        <option>Momo</option>
+        <option>Princess Mononoke</option>
+      </select>
+    </label>
+</br>
+
+    <label>
+      Enable Secret Deliveries? (pop-ups whenever you open the site)
+      <div class="radio-group">
+        <input type="radio" name="status" value="enableSD" required> Yes
+        <input type="radio" name="status" value="disableSD"> No
+      </div>
+    </label>
+</br>
+
+    <button type="submit">Enter Realm</button>
+    <input type="reset" value="Clear">
+</form>
+
+  <!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="sources">
+            <h4>Sources / Credits</h4>
+            <ul>
+                <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. Retrieved from <a href="https://www.ghibli.jp" target="_blank">https://www.ghibli.jp</a></li>
+                <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. Retrieved from <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">https://ghibli.fandom.com/wiki/Ghibli_Wiki</a></li>
+            </ul>
+        </div>
+        <div class="repo-link">
+            <h4>Repository</h4>
+            <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
+</footer>
+
+<script>
+/* LOADER */
+const loader = document.getElementById('loader');
+const bar = document.getElementById('bar-fill');
+const percent = document.getElementById('load-percent');
+let load = 0;
+const duration = Math.random() * 2000;
+const step = duration / 100;
+const interval = setInterval(() => {
+  load++;
+  bar.style.width = load + '%';
+  percent.textContent = load + '%';
+  if (load >= 100) {
+    clearInterval(interval);
+    loader.classList.add('hide');
+  }
+}, step);
+
+/* TYPE */
+const typeEl = document.querySelector('.type');
+const text = typeEl.textContent;
+typeEl.textContent = '';
+let i = 0;
+function type() {
+  if (i < text.length) {
+    typeEl.textContent += text.charAt(i);
+    i++;
+    setTimeout(type, 60);
+  }
+}
+setTimeout(type, 1200);
+
+/* FORM SUBMISSION AND RESET */
+
+ function confirmSubmit() {
+      return confirm("Are you sure you want to submit this form?");
+    }
+
+    function confirmReset() {
+      return confirm("Are you sure you want to clear all inputs?");
+    }
+
+    function checkEmpty(el) {
+      if (el.value.trim() === "") {
+        el.classList.add("error");
+      } else {
+        el.classList.remove("error");
+      }
+    }
+
+/* LEAVES */
+const canvas = document.getElementById('leaves');
+const ctx = canvas.getContext('2d');
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const leaves = Array.from({ length: 30 }, () => ({
+  x: Math.random() * w,
+  y: Math.random() * h,
+  s: Math.random() * 2 + 1,
+  r: Math.random() * Math.PI
+}));
+
+function animateLeaves() {
+  ctx.clearRect(0,0,w,h);
+  leaves.forEach(l => {
+    l.y += l.s * 0.5;
+    l.x += Math.sin(l.y * 0.01);
+    l.r += 0.01;
+    if (l.y > h) l.y = -20;
+    ctx.save();
+    ctx.translate(l.x, l.y);
+    ctx.rotate(l.r);
+    ctx.fillStyle = 'rgba(120,150,120,0.6)';
+    ctx.beginPath();
+    ctx.ellipse(0,0,6,3,0,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  });
+  requestAnimationFrame(animateLeaves);
+}
+animateLeaves();
+
+</script>
+</body>
+</html>
