@@ -461,3 +461,21 @@ section, nav {
   50% { transform: translateX(-50%) rotate(6deg); }
   100% { transform: translateX(-50%) rotate(-6deg); }
 }
+#rhythm-trigger-container {
+    position: absolute;
+    top: calc(18% + 3.5rem); /* a bit below the title; adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+#rhythm-trigger-container img {
+    width: 45px;   /* bigger than 25px so it's visible */
+    height: 45px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#rhythm-trigger-container img:hover {
+    transform: translateX(-50%) scale(1.2);
+}
