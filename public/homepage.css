@@ -299,3 +299,51 @@ section, nav {
     font-size: 0.8rem;
     opacity: 0.7;
 }
+
+/* RHYTHM GAME BUTTON */
+#rhythm-trigger {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    z-index: 15;
+    transition: transform 0.4s ease;
+}
+#rhythm-trigger:hover {
+    transform: scale(1.08) rotate(2deg);
+}
+
+/* RHYTHM MODAL */
+#rhythm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,28,23,0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+#rhythm-canvas {
+    background: #202c24;
+    border: 2px solid rgba(242,239,232,0.4);
+}
+
+.rhythm-hint {
+    margin-top: 1rem;
+    font-family: 'Libre Caslon Display', serif;
+    letter-spacing: 0.12em;
+}
+
+#close-rhythm {
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.4rem;
+    background: transparent;
+    border: 1px solid rgba(242,239,232,0.6);
+    color: #f2efe8;
+    cursor: pointer;
+}
+
