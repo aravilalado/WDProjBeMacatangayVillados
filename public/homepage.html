@@ -104,7 +104,7 @@ const loader = document.getElementById('loader');
 const bar = document.getElementById('bar-fill');
 const percent = document.getElementById('load-percent');
 let load = 0;
-const duration = Math.random() * 3000;
+const duration = Math.random() * 1000;
 const step = duration / 100;
 const interval = setInterval(() => {
   load++;
@@ -187,10 +187,7 @@ setInterval(() => {
 }, 4500);
 
 
-  <script>
-/* =========================
-   MINI RHYTHM GAME
-   ========================= */
+/* MINI RHYTHM GAME*/
 
 const trigger = document.getElementById('rhythm-trigger');
 const modal = document.getElementById('rhythm-modal');
@@ -277,7 +274,6 @@ function updateRhythm() {
 
   requestAnimationFrame(updateRhythm);
 }
-</script>
 
 </script>
 </body>
