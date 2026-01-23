@@ -67,18 +67,33 @@
 </section>
 
 <!--minigame-->
-<img
-  id="rhythm-trigger"
-  src="https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/public/minigame.gif"
-  alt="Play a little rhythm game"
-  title="A gentle surprise"
->
+<!-- RHYTHM GAME TRIGGER -->
+<img id="rhythm-trigger" src="totoro-dance.gif" 
+     style="width:140px; cursor:pointer;" 
+     alt="Play Rhythm Game" />
 
-<div id="rhythm-modal">
-  <canvas id="rhythm-canvas" width="500" height="600"></canvas>
-  <p class="rhythm-hint">Tap SPACE or CLICK with the beat 🌱</p>
-  <button id="close-rhythm">Close</button>
+<!-- RHYTHM GAME POPUP -->
+<div id="rhythm-overlay">
+  <div id="rhythm-game">
+    <button id="rhythm-close">✕</button>
+
+    <div id="tutorial">
+      <h2>Spirit Rhythm 🌱</h2>
+      <p>Press the matching arrow key when it reaches the circle.</p>
+      <p><strong>Press any key to begin.</strong></p>
+    </div>
+
+    <div id="lanes">
+      <div class="lane" data-key="ArrowLeft">←</div>
+      <div class="lane" data-key="ArrowUp">↑</div>
+      <div class="lane" data-key="ArrowDown">↓</div>
+      <div class="lane" data-key="ArrowRight">→</div>
+    </div>
+
+    <p id="score">Score: 0</p>
+  </div>
 </div>
+
 
   <!-- FOOTER -->
 <footer class="site-footer">
@@ -188,91 +203,74 @@ setInterval(() => {
 
 
 /* MINI RHYTHM GAME*/
-
+/* RHYTHM GAME */
 const trigger = document.getElementById('rhythm-trigger');
-const modal = document.getElementById('rhythm-modal');
-const closeBtn = document.getElementById('close-rhythm');
-const canvasR = document.getElementById('rhythm-canvas');
-const ctxR = canvasR.getContext('2d');
+const overlay = document.getElementById('rhythm-overlay');
+const closeBtn = document.getElementById('rhythm-close');
+const tutorial = document.getElementById('tutorial');
+const lanes = document.querySelectorAll('.lane');
+const scoreEl = document.getElementById('score');
 
-let notes = [];
+let started = false;
 let score = 0;
-let playing = false;
 
 trigger.onclick = () => {
-  modal.style.display = 'flex';
-  startRhythm();
+  overlay.style.display = 'flex';
+  started = false;
+  tutorial.style.display = 'block';
+  score = 0;
+  scoreEl.textContent = 'Score: 0';
 };
 
 closeBtn.onclick = () => {
-  modal.style.display = 'none';
-  playing = false;
+  overlay.style.display = 'none';
 };
 
-function startRhythm() {
-  notes = [];
-  score = 0;
-  playing = true;
-  spawnLoop();
-  requestAnimationFrame(updateRhythm);
-}
-
-/* SPAWN NOTES */
-function spawnLoop() {
-  if (!playing) return;
-  notes.push({
-    x: Math.random() * 400 + 50,
-    y: -20,
-    hit: false
-  });
-  setTimeout(spawnLoop, 900); // gentle tempo
-}
-
-/* INPUT */
+/* Start on any key */
 window.addEventListener('keydown', e => {
-  if (e.code === 'Space') hitNote();
-});
-canvasR.addEventListener('click', hitNote);
+  if (!overlay.style.display.includes('flex')) return;
 
-function hitNote() {
-  notes.forEach(n => {
-    if (!n.hit && n.y > 480 && n.y < 540) {
-      n.hit = true;
-      score++;
+  if (!started) {
+    tutorial.style.display = 'none';
+    started = true;
+    spawnLoop();
+    return;
+  }
+
+  lanes.forEach(lane => {
+    if (lane.dataset.key === e.key) {
+      const note = lane.querySelector('.note');
+      if (note && note.offsetTop > 200) {
+        score += 10;
+        scoreEl.textContent = `Score: ${score}`;
+        note.remove();
+      }
     }
   });
-}
+});
 
-/* GAME LOOP */
-function updateRhythm() {
-  if (!playing) return;
+/* Spawn notes */
+function spawnLoop() {
+  if (!started) return;
 
-  ctxR.clearRect(0,0,500,600);
+  const lane = lanes[Math.floor(Math.random() * lanes.length)];
+  const note = document.createElement('div');
+  note.className = 'note';
+  note.textContent = lane.textContent;
+  lane.appendChild(note);
 
-  /* HIT LINE */
-  ctxR.strokeStyle = '#e6d36a';
-  ctxR.beginPath();
-  ctxR.moveTo(0,520);
-  ctxR.lineTo(500,520);
-  ctxR.stroke();
+  let pos = -40;
+  const fall = setInterval(() => {
+    pos += 4;
+    note.style.top = pos + 'px';
 
-  /* NOTES */
-  notes.forEach(n => {
-    n.y += 2;
-    ctxR.fillStyle = n.hit
-      ? 'rgba(180,220,180,0.3)'
-      : '#a8c4a2';
-    ctxR.beginPath();
-    ctxR.ellipse(n.x, n.y, 10, 6, 0, 0, Math.PI*2);
-    ctxR.fill();
-  });
+    if (pos > 260) {
+      note.remove();
+      clearInterval(fall);
+    }
+  }, 30);
 
-    /* SCORE */
-  ctxR.fillStyle = '#f2efe8';
-  ctxR.font = '20px Open Sans';
-  ctxR.fillText('Score: ' + score, 20, 30);
-
-  requestAnimationFrame(updateRhythm);
+  setTimeout(spawnLoop, 700);
 }
 
 </script>
