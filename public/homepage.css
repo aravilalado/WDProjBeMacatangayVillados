@@ -300,50 +300,73 @@ section, nav {
     opacity: 0.7;
 }
 
-/* RHYTHM GAME BUTTON */
-#rhythm-trigger {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 160px;
-    height: 160px;
-    cursor: pointer;
-    z-index: 15;
-    transition: transform 0.4s ease;
-}
-#rhythm-trigger:hover {
-    transform: scale(1.08) rotate(2deg);
+/* RHYTHM GAME *//* RHYTHM GAME OVERLAY */
+#rhythm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,30,24,0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
 }
 
-/* RHYTHM MODAL */
-#rhythm-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(20,28,23,0.9);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
+#rhythm-game {
+  width: 80%;
+  max-width: 900px;
+  height: 70%;
+  background: #1f2c24;
+  border: 2px solid rgba(242,239,232,0.4);
+  position: relative;
+  padding: 2rem;
+  text-align: center;
 }
 
-#rhythm-canvas {
-    background: #202c24;
-    border: 2px solid rgba(242,239,232,0.4);
+/* Close button */
+#rhythm-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #f2efe8;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 
-.rhythm-hint {
-    margin-top: 1rem;
-    font-family: 'Libre Caslon Display', serif;
-    letter-spacing: 0.12em;
+/* Tutorial */
+#tutorial h2 {
+  font-family: 'Libre Caslon Display', serif;
+  letter-spacing: 0.12em;
 }
 
-#close-rhythm {
-    margin-top: 1.2rem;
-    padding: 0.6rem 1.4rem;
-    background: transparent;
-    border: 1px solid rgba(242,239,232,0.6);
-    color: #f2efe8;
-    cursor: pointer;
+/* Lanes */
+#lanes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
 }
 
+.lane {
+  width: 90px;
+  height: 300px;
+  border: 1px solid rgba(242,239,232,0.3);
+  position: relative;
+  font-size: 2rem;
+  opacity: 0.6;
+}
+
+/* Falling note */
+.note {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+}
+
+/* Score */
+#score {
+  margin-top: 2rem;
+  font-weight: 600;
+}
