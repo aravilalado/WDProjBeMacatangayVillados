@@ -65,6 +65,21 @@
   <a href=""><div class="card"><img src="icon4.gif" /><h4>Realms (IN PROGRESS)</h4></div></a>
   <a href=""><div class="card"><img src="icon5.gif" /><h4>Sources (IN PROGRESS)</h4></div></a>
 </section>
+
+<!--minigame-->
+<img
+  id="rhythm-trigger"
+  src="https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/public/minigame.gif"
+  alt="Play a little rhythm game"
+  title="A gentle surprise"
+>
+
+<div id="rhythm-modal">
+  <canvas id="rhythm-canvas" width="500" height="600"></canvas>
+  <p class="rhythm-hint">Tap SPACE or CLICK with the beat 🌱</p>
+  <button id="close-rhythm">Close</button>
+</div>
+
   <!-- FOOTER -->
 <footer class="site-footer">
     <div class="footer-content">
@@ -170,6 +185,100 @@ setInterval(() => {
   current = (current + 1) % slides.length;
   slides[current].classList.add('active');
 }, 4500);
+
+
+  <script>
+/* =========================
+   MINI RHYTHM GAME
+   ========================= */
+
+const trigger = document.getElementById('rhythm-trigger');
+const modal = document.getElementById('rhythm-modal');
+const closeBtn = document.getElementById('close-rhythm');
+const canvasR = document.getElementById('rhythm-canvas');
+const ctxR = canvasR.getContext('2d');
+
+let notes = [];
+let score = 0;
+let playing = false;
+
+trigger.onclick = () => {
+  modal.style.display = 'flex';
+  startRhythm();
+};
+
+closeBtn.onclick = () => {
+  modal.style.display = 'none';
+  playing = false;
+};
+
+function startRhythm() {
+  notes = [];
+  score = 0;
+  playing = true;
+  spawnLoop();
+  requestAnimationFrame(updateRhythm);
+}
+
+/* SPAWN NOTES */
+function spawnLoop() {
+  if (!playing) return;
+  notes.push({
+    x: Math.random() * 400 + 50,
+    y: -20,
+    hit: false
+  });
+  setTimeout(spawnLoop, 900); // gentle tempo
+}
+
+/* INPUT */
+window.addEventListener('keydown', e => {
+  if (e.code === 'Space') hitNote();
+});
+canvasR.addEventListener('click', hitNote);
+
+function hitNote() {
+  notes.forEach(n => {
+    if (!n.hit && n.y > 480 && n.y < 540) {
+      n.hit = true;
+      score++;
+    }
+  });
+}
+
+/* GAME LOOP */
+function updateRhythm() {
+  if (!playing) return;
+
+  ctxR.clearRect(0,0,500,600);
+
+  /* HIT LINE */
+  ctxR.strokeStyle = '#e6d36a';
+  ctxR.beginPath();
+  ctxR.moveTo(0,520);
+  ctxR.lineTo(500,520);
+  ctxR.stroke();
+
+  /* NOTES */
+  notes.forEach(n => {
+    n.y += 2;
+    ctxR.fillStyle = n.hit
+      ? 'rgba(180,220,180,0.3)'
+      : '#a8c4a2';
+    ctxR.beginPath();
+    ctxR.ellipse(n.x, n.y, 10, 6, 0, 0, Math.PI*2);
+    ctxR.fill();
+  });
+
+    /* SCORE */
+  ctxR.fillStyle = '#f2efe8';
+  ctxR.font = '20px Open Sans';
+  ctxR.fillText('Score: ' + score, 20, 30);
+
+  requestAnimationFrame(updateRhythm);
+}
+</script>
+
 </script>
 </body>
 </html>
