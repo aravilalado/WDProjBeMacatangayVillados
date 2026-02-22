@@ -206,7 +206,6 @@ setInterval(() => {
     // Close overlay by button or Escape key and clear temporary UI state.
     closeOverlay.addEventListener('click',()=>{ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; });
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; } });
-    });
     </script>
     </body>
     </html>
