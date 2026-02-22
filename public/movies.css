@@ -13,7 +13,16 @@ body {
     color: #f2efe8;
     overflow-x: hidden;
 }
+.reveal {
+    opacity: 0;               
+    transform: translateY(50px);  
+    transition: opacity 1s ease, transform 1s ease;
+}
 
+.reveal.active {
+    opacity: 1;               /* fade in */
+    transform: translateY(0); /* move up into place */
+}
 
 /* NAVIGATION */
 .topbar {
@@ -111,16 +120,8 @@ body {
 }
 
 /* ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 .type {
     animation: letterFloat 1.3s ease forwards;
-}
-@keyframes letterFloat {
-    from { opacity: 0; letter-spacing: 0.35em; }
-    to { opacity: 1; letter-spacing: 0.08em; }
 }
 
 /* LEAVES */
@@ -137,14 +138,11 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 3rem;
     padding: 6rem 12%;
-    opacity: 0;
-    transform: translateY(60px);
-    transition: opacity 1s ease, transform 1s ease;
-}
-.cards.active {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 1s ease, transform 1s ease;
 }
+
 .card {
     padding: 2rem;
     background: #202c24;

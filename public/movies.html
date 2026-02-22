@@ -11,15 +11,16 @@
 
 <!-- NAV -->
 <nav class="topbar">
-  <div class="logo">Whispers of Ghibli</div>
-  <ul>
+    <div class="logo">Whispers of Ghibli</div>
+    <ul>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
-    <li><a href="">The Studio</a></li>
-    <li><a href="">Realms</a></li>
-    <li><a href="">Sources</a></li>
-  </ul>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realms.html">Realms</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realms.html">Realms</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/sources.html">Sources</a></li>
+    </ul>
 </nav>
 
 <!-- HEADER CAROUSEL -->
@@ -166,10 +167,16 @@ setInterval(() => {
     }
     animateLeaves();
 
-    // Reveal sections when they enter the viewport.
+
+      document.addEventListener('DOMContentLoaded', () => {
+    const moviesGrid = document.getElementById('movies-grid');
+    moviesGrid.classList.add('active');
+  });
+  
+    /*// Reveal sections when they enter the viewport.
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => { entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('active'); }) },{threshold:0.2});
-    reveals.forEach(r=>observer.observe(r));
+    reveals.forEach(r=>observer.observe(r));*/
 
     // Cache movie overlay elements for quick updates on card click.
     const overlay=document.getElementById('movie-overlay'); 
