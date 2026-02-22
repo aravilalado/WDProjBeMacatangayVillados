@@ -9,15 +9,6 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-box">
-    <h1>Whispers of Ghibli</h1>
-    <div class="bar"><span id="bar-fill"></span></div>
-    <p id="load-percent">0%</p>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav class="topbar">
   <div class="logo">Whispers of Ghibli</div>
@@ -120,24 +111,8 @@
 </footer>
 
 <script>
-/* LOADER */
-const loader = document.getElementById('loader');
-const bar = document.getElementById('bar-fill');
-const percent = document.getElementById('load-percent');
-let load = 0;
-const duration = Math.random() * 2000;
-const step = duration / 100;
-const interval = setInterval(() => {
-  load++;
-  bar.style.width = load + '%';
-  percent.textContent = load + '%';
-  if (load >= 100) {
-    clearInterval(interval);
-    loader.classList.add('hide');
-  }
-}, step);
-
 /* TYPE */
+// Typewriter effect for the header text element.
 const typeEl = document.querySelector('.type');
 const text = typeEl.textContent;
 typeEl.textContent = '';
@@ -152,6 +127,7 @@ function type() {
 setTimeout(type, 1200);
 
 /* FORM SUBMISSION AND RESET */
+// Ask confirmation before submit/reset and mark empty required fields.
 
  function confirmSubmit() {
       return confirm("Are you sure you want to submit this form?");
@@ -170,6 +146,7 @@ setTimeout(type, 1200);
     }
 
 /* LEAVES */
+// Draw moving leaf shapes on the fullscreen background canvas.
 const canvas = document.getElementById('leaves');
 const ctx = canvas.getContext('2d');
 let w, h;

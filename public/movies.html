@@ -9,15 +9,6 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-box">
-    <h1>Whispers of Ghibli</h1>
-    <div class="bar"><span id="bar-fill"></span></div>
-    <p id="load-percent">0%</p>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav class="topbar">
   <div class="logo">Whispers of Ghibli</div>
@@ -132,25 +123,8 @@
 </footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    // LOADER
-    const loader = document.getElementById('loader');
-    const bar = document.getElementById('bar-fill');
-    const percent = document.getElementById('load-percent');
-    let load = 0;
-    const duration = Math.random() * 3000 + 2000;
-    const step = duration / 100;
-    const interval = setInterval(() => {
-        load++;
-        bar.style.width = load + '%';
-        percent.textContent = load + '%';
-        if (load >= 100) {
-        clearInterval(interval);
-        loader.classList.add('hide');
-        }
-    }, step);
-
  // CAROUSEL FUNCTIONALITY
+    // Show one carousel slide at a time, then rotate automatically.
     const carousel = document.querySelector('.carousel');
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
@@ -161,16 +135,16 @@
      });
     }
 
-// Initialize first slide
+// Initialize first slide.
 showSlide(currentIndex);
 
-// Auto-advance every 4 seconds
+// Auto-advance every 4 seconds.
 setInterval(() => {
     currentIndex = (currentIndex + 1) % slides.length;
     showSlide(currentIndex);
 }, 4000);
 
-    // LEAVES
+    // Draw animated decorative leaves on the background canvas.
     const canvas = document.getElementById('leaves');
     const ctx = canvas.getContext('2d');
     let w,h;
@@ -192,12 +166,12 @@ setInterval(() => {
     }
     animateLeaves();
 
-    // REVEAL
+    // Reveal sections when they enter the viewport.
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => { entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('active'); }) },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
 
-    // MOVIE OVERLAY
+    // Cache movie overlay elements for quick updates on card click.
     const overlay=document.getElementById('movie-overlay'); 
     const overlayTitle=document.getElementById('overlay-title'); 
     const overlayYear=document.getElementById('overlay-year'); 
@@ -207,6 +181,7 @@ setInterval(() => {
     const overlayCharacters=document.getElementById('overlay-characters'); 
     const closeOverlay=document.getElementById('close-overlay');
 
+    // Open the overlay and populate it from clicked card data attributes.
     document.querySelectorAll('.card').forEach(card=>{
         card.addEventListener('click', ()=>{
         card.classList.add('clicked');
@@ -218,6 +193,7 @@ setInterval(() => {
         overlayLong.textContent='';
         overlayCharacters.textContent=card.dataset.characters;
 
+        // Type long description gradually for a cinematic reveal effect.
         const longText=card.dataset.long;
         let i=0;
         function typeLong(){ if(i<longText.length){ overlayLong.textContent+=longText.charAt(i); i++; setTimeout(typeLong,20); } }
@@ -227,6 +203,7 @@ setInterval(() => {
         });
     });
 
+    // Close overlay by button or Escape key and clear temporary UI state.
     closeOverlay.addEventListener('click',()=>{ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; });
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; } });
     });

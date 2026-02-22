@@ -10,15 +10,6 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-    <div class="loader-box">
-        <h1>Whispers of Ghibli</h1>
-        <div class="bar"><span id="bar-fill"></span></div>
-        <p id="load-percent">0%</p>
-    </div>
-</div>
-
 <!-- NAV -->
 <nav class="topbar">
     <div class="logo">Whispers of Ghibli</div>
@@ -144,29 +135,14 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.getElementById('loader');
-    const bar = document.getElementById('bar-fill');
-    const percent = document.getElementById('load-percent');
-    let load = 0;
-    const duration = Math.random() * 3000 + 2000;
-    const step = duration / 100;
-    const interval = setInterval(() => {
-            load++;
-            bar.style.width = load + '%';
-            percent.textContent = load + '%';
-            if(load >= 100){
-                clearInterval(interval);
-                loader.classList.add('hide');
-            }
-    }, step);
-
+    // Rotate carousel images on a fixed interval.
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
     function showSlide(index){ slides.forEach((s,i)=> s.style.display = i===index ? 'block':'none'); }
     showSlide(currentIndex);
     setInterval(()=>{ currentIndex=(currentIndex+1)%slides.length; showSlide(currentIndex); }, 4000);
 
+    // Draw and animate decorative falling leaves on the background canvas.
     const canvas = document.getElementById('leaves');
     const ctx = canvas.getContext('2d');
     let w,h;
@@ -188,10 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateLeaves();
 
+    // Reveal sections when they enter the viewport.
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); })},{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
 
+    // Cache overlay elements once, then populate them from card data attributes.
     const overlay = document.getElementById('character-overlay');
     const overlayName = document.getElementById('overlay-name');
     const overlayMovie = document.getElementById('overlay-movie');
@@ -203,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlayTag = document.getElementById('overlay-tag');
     const closeOverlay = document.getElementById('close-character-overlay');
 
+    // Open character details when a card is clicked.
     document.querySelectorAll('.card').forEach(card=>{
         card.addEventListener('click', ()=>{
             try{
@@ -219,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Allow closing the overlay with click or Escape key.
     closeOverlay.addEventListener('click',()=>{ overlay.style.display='none'; });
     document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ overlay.style.display='none'; } });
 });

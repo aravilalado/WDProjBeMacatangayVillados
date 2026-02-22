@@ -1,1 +1,181 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons of Ghibli</title>
+    <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
+    <link rel="stylesheet" href="about.css" />
+  
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topbar">
+    <div class="logo">Whispers of Ghibli</div>
+    <ul>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
+    <li><a href="">The Studio</a></li>
+    <li><a href="">Realms</a></li>
+    <li><a href="">Sources</a></li>
+    </ul>
+</nav>
+
+<!-- HEADER CAROUSEL -->
+<section class="header-carousel">
+  <div class="carousel">
+    <div class="carousel-slide"><img src="one.gif" alt="slide1"></div>
+    <div class="carousel-slide"><img src="two.gif" alt="slide2"></div>
+    <div class="carousel-slide"><img src="three.gif" alt="slide3"></div>
+    <div class="carousel-slide"><img src="four.gif" alt="slide4"></div>
+  </div>
+  <h2 class="carousel-header">The Art and Heart Behind Ghibli</h2>
+</section>
+
+<canvas id="leaves"></canvas>
+
+
+    <!-- ABOUT SECTION – BOOK CAROUSEL -->
+    <section class="about-book-section">
+        <div class="about-book-container">
+            <h3 class="about-book-title">
+             the book of ghibli    
+            </h3>
+
+            <div class="about-book-sprite-wrapper">
+                <div class="about-book-shell">
+                    <div class="about-book-carousel" style="--slides: 3;">
+                        <div class="about-book-sprite" aria-hidden="true"></div>
+
+                        <article class="about-book-item">
+                            <div class="about-page-container">
+                                <section class="about-page about-left-page">
+                                    <div>
+                                        <p>
+                                            <b>Studio Ghibli</b> was founded in <b>1985</b> by <i>Hayao Miyazaki, Isao Takahata, and producer Toshio Suzuki</i>. Emerging from the success of Nausicaä of the Valley of the Wind, the studio became known for hand-drawn animation, emotional storytelling, and respect for nature and humanity.
+                                        </p>
+                                        
+                                    </div>
+                                </section>
+                                <section class="about-page about-right-page">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <b>Hayao Miyazaki</b> - Visionary director known for imaginative worlds, strong female leads, and environmental themes.
+                                            </li>
+                                        </ul>
+                                        <img src="Miyazaki-Hayao.png" alt="Hayao Miyazaki portrait">
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+
+                        <article class="about-book-item">
+                            <div class="about-page-container">
+                                <section class="about-page about-left-page">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <b>Isao Takahata</b> - A realist storyteller who explored everyday life and historical tragedy through animation.
+                                            </li>
+                                        </ul>
+                                        <img src="Takahata.png" alt="Isao Takahata portrait">
+                                    </div>
+                                </section>
+                                <section class="about-page about-right-page">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <b>Toshio Suzuki</b> - Producer and driving force behind Ghibli's global success and creative freedom.
+                                            </li>
+                                        </ul>
+                                        <img src="Suzuki.png" alt="Toshio Suzuki portrait">
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+
+                        <article class="about-book-item">
+                            <div class="about-page-container">
+                                <section class="about-page about-left-page">
+                                    <div>
+                                        <p><b>How Ghibli Creates Films (Creative Pipeline)</b></p>
+                                        <ol>
+                                            <li>Concept sketches by the director</li>
+                                            <li>Hand-drawn storyboards</li>
+                                            <li>Key animation frames</li>
+                                            <li>Background painting</li>
+                                            <li>Coloring and compositing</li>
+                                            <li>Sound design and music</li>
+                                        </ol>
+                                    </div>
+                                </section>
+                                <section class="about-page about-right-page">
+                                    <div>
+                                        <img src="yas.gif">
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="sources">
+            <h4>Sources / Credits</h4>
+            <ul>
+                <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. Retrieved from <a href="https://www.ghibli.jp" target="_blank">https://www.ghibli.jp</a></li>
+                <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. Retrieved from <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">https://ghibli.fandom.com/wiki/Ghibli_Wiki</a></li>
+            </ul>
+        </div>
+        <div class="repo-link">
+            <h4>Repository</h4>
+            <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
+</footer>
+
+
+<script>
+    // Rotate carousel images on a fixed interval.
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+    function showSlide(index){ slides.forEach((s,i)=> s.style.display = i===index ? 'block':'none'); }
+    showSlide(currentIndex);
+    setInterval(()=>{ currentIndex=(currentIndex+1)%slides.length; showSlide(currentIndex); }, 4000);
+
+    // Draw and animate decorative falling leaves on the background canvas.
+    const canvas = document.getElementById('leaves');
+    const ctx = canvas.getContext('2d');
+    let w,h;
+    function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
+    window.addEventListener('resize',resize);
+    resize();
+    const leaves = Array.from({length:30},()=>({x:Math.random()*w, y:Math.random()*h, s:Math.random()*2+1, r:Math.random()*Math.PI}));
+    function animateLeaves(){
+        ctx.clearRect(0,0,w,h);
+        leaves.forEach(l=>{
+            l.y+=l.s*0.5; l.x+=Math.sin(l.y*0.01); l.r+=0.01;
+            if(l.y>h) l.y=-20;
+            ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.r);
+            ctx.fillStyle='rgba(120,150,120,0.6)';
+            ctx.beginPath(); ctx.ellipse(0,0,6,3,0,0,Math.PI*2); ctx.fill();
+            ctx.restore();
+        });
+        requestAnimationFrame(animateLeaves);
+    }
+    animateLeaves();
+
+</script>
+
+</body>
+</html>

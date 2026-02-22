@@ -126,6 +126,7 @@
 
 <script>
 /* LOADER */
+// Simulate loading progress, then fade out the intro loader.
 const loader = document.getElementById('loader');
 const bar = document.getElementById('bar-fill');
 const percent = document.getElementById('load-percent');
@@ -143,6 +144,7 @@ const interval = setInterval(() => {
 }, step);
 
 /* TYPE */
+// Animate the hero title one character at a time.
 const typeEl = document.querySelector('.type');
 const text = typeEl.textContent;
 typeEl.textContent = '';
@@ -157,6 +159,7 @@ function type() {
 setTimeout(type, 1200);
 
 /* REVEAL */
+// Add animation class when sections become visible on scroll.
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -166,6 +169,7 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(r => observer.observe(r));
 
 /* LEAVES */
+// Render floating leaves in a fullscreen canvas for ambient motion.
 const canvas = document.getElementById('leaves');
 const ctx = canvas.getContext('2d');
 let w, h;
@@ -204,6 +208,7 @@ function animateLeaves() {
 animateLeaves();
 
 /* CAROUSEL */
+// Cycle hero slides continuously.
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 setInterval(() => {
@@ -214,6 +219,7 @@ setInterval(() => {
 
 
 /* MINI RHYTHM GAME*/
+// Rhythm mini-game state and element bindings.
 const trigger = document.getElementById('rhythm-trigger');
 const overlay = document.getElementById('rhythm-overlay');
 const closeBtn = document.getElementById('rhythm-close');
@@ -260,6 +266,7 @@ trigger.onclick = () => {
 closeBtn.onclick = () => overlay.style.display = 'none';
 
 function updateHUD() {
+  // Keep score, combo, and lives indicators synced with game state.
   scoreEl.textContent = `Score: ${score}`;
   comboEl.textContent = `Combo: ${combo}`;
   comboEl.style.color = combo >= 10 ? '#f2ef6a' : '#e6d36a';
@@ -269,6 +276,7 @@ function updateHUD() {
 }
 
 function showFeedback(text, color) {
+  // Briefly show hit/miss feedback after each action.
   feedback.textContent = text;
   feedback.style.color = color;
   feedback.classList.add('show');
@@ -308,6 +316,7 @@ window.addEventListener('keydown', e => {
 });
 
 function registerHit(lane, note, label, points) {
+  // Reward timing hits, then remove the matched note.
   if (!gameActive) return; // stop scoring if game is over
   score += points + combo * 10;
   combo++;
@@ -324,6 +333,7 @@ function registerHit(lane, note, label, points) {
 }
 
 function registerMiss() {
+  // Break combo, reduce lives, and end game when misses are exhausted.
   if (!gameActive) return;
   combo = 0;
   misses++;
@@ -338,6 +348,7 @@ function registerMiss() {
 
 // spawn notes
 function spawnLoop() {
+  // Continuously spawn falling notes in random lanes while active.
   if (!gameActive) return;
   const lane = lanes[Math.floor(Math.random() * lanes.length)];
   const note = document.createElement('div');
@@ -370,6 +381,7 @@ function spawnLoop() {
 
 // particle effect
 function spawnParticle(lane) {
+  // Spawn short-lived particles for hit feedback.
   const particle = document.createElement('div');
   particle.textContent = '🌿';
   particle.style.position = 'absolute';
@@ -389,6 +401,7 @@ function spawnParticle(lane) {
 
 // game over screen
 function gameOver() {
+  // Persist best scores and replace overlay content with end screen.
   // save scores
   if (score > highScore) localStorage.setItem('ghibliHighScore', score);
   if (maxCombo > parseInt(localStorage.getItem('ghibliMaxCombo') || 0))
