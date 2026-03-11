@@ -89,7 +89,7 @@ User is redirected to P1 and allowed access to hidden interactions on P5
 - Konami Code triggers extra effects only for registered users
 
 
-#### P6 – Sources + Behind the Website
+#### P6 – Sources + Behind the Website + mini ghibli-themed Photobooth for fun 
 ##### Use of Stored Data
 - Personalized message thanking the visitor by name
 - Registered users may add comments
