@@ -112,3 +112,51 @@ User is redirected to P1 and allowed access to hidden interactions on P5
 |  hidden whispers  |  ![5]((https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/public/Homepage%201.png?raw=true)  |  |
 |  sources + info  |  ![6](https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/public/Homepage%201%20(1).png?raw=true))![7](https://github.com/aravilalado/WDProjBeMacatangayVillados/blob/main/public/Homepage%201%20(2).png?raw=true)  |  |
 
+---
+## FINAL MODIFICATION Proposal
+##### This section documents the updated design and implementation plan for localStorage data management (CRUD), updated wireframes, and all new feature additions introduced in the final modification phase.
+### Overview of modifications
+The final modification expands on the previous HTML Forms integration plan along with 3 major aditions to include CRUD
+#### 1.   Photobooth section included in P6 - Behind the Website
+- CRUD: Users may take a picture using the available camera (website asks permission before accessing) and it is saved to local storage. Users would then select a few of those pictures to either download individually or create a photo strip with ghibli-themed stickers and frames. Users may save the aforementioned photostrips to edit later, edits are saved as well and photos can be deleted with a click of a button.
+#### 2. An Account Preferences Update system that is accessible in every webpage allowing users to modify their saved visitor profile at any time.
+- users may update their account preferences such as preferred name, theme, and favorite movie at anytime
+#### 3. Users may have the option to delete all saved local storage data on the site
+
+### localStorage CRUD Design & Narrative
+#### Purpose
+The site uses localStorage as a lightweight, browser-based persistence layer — no accounts, no servers, no logins required. This keeps the experience magical and low-friction, fitting the whimsical Ghibli spirit. Users build a personal "realm profile" as they explore the site, and that profile persists across visits until they choose to change or remove it. All stored data is local to the user's browser and device. Nothing is transmitted to any server.
+
+### CRUD Operations by feature
+#### 1. Create and Update of User visitor profile and preferences
+- CREATE (First Visit):
+When a user fills out the Realm Entry Form for the first time and clicks "Enter the Realm," all form values are validated and written to localStorage. A success animation plays (themed to the chosen realm), and the user is redirected to P1.
+- UPDATE (Return Visit / Edit Preferences):
+On P4, returning users (those with existing localStorage data) will see their form pre-populated with their saved preferences. A clearly labeled "Update My Realm" button (distinct from the initial "Enter the Realm" button) allows them to overwrite saved values. On save, a brief confirmation animation plays — "Your realm has shifted!" — and updated values propagate immediately to P5 and P6 on next load.
+#### 2. Trivia & Easter Eggs (P5) Read and Update
+- READ:
+On page load, P5 reads wog_name, wog_realm, wog_activities, wog_easter_eggs, and wog_trivia_progress from localStorage. This data drives the personalized greeting, adaptive trivia questions, and locked/unlocked easter egg content.
+- UPDATE:
+Every time a user answers a trivia question, discovers a hidden creature, or triggers an easter egg, their wog_trivia_progress entry is updated silently in the background. A progress indicator (e.g., "12 of 30 secrets found") reflects the live state of this data.
+#### 3. Photobooth (P6) Full CRUD
+The Ghibli Realm Photobooth is a fun, low-stakes creative feature tucked into the "Behind the Website" page. Users can snap photos using their device camera (with explicit permission requested), decorate them with Ghibli-themed stickers and frames, and save personal photo strips as keepsakes of their visit to the realm.
+- READ AND UPDATE
+On P6 load, all saved photos are retrieved from wog_photos and displayed in a scrollable gallery beneath the camera. Saved photo strips are retrieved from wog_photostrips and shown in a separate "My Strips" section. The user may select 2–4 photos from their gallery to compose a photo strip. A strip editor opens with options to: apply a Ghibli-themed frame (e.g., Totoro forest, Spirited Away bathhouse, Howl's castle), add sticker overlays (soot sprites, Kodama, No-Face mask, catbus), and rearrange photo order via drag-and-drop. Clicking "Save Strip" serializes the strip configuration (selected photo indices, frame ID, sticker placements) and saves it to wog_photostrips in localStorage. Clicking "Edit" on a previously saved strip reopens the editor with the saved configuration loaded — allowing the user to revise and re-save.
+- DELETE
+Individual photos can be deleted from the gallery by clicking a small ✕ button on each photo tile. A soft confirmation prompt appears: "Send this memory to the spirit world?" with Yes/No options. Individual photo strips can be deleted from the "My Strips" section similarly. Deletion updates the relevant localStorage key immediately and re-renders the gallery.
+- Download (non-storage)
+Individual photos can be downloaded directly via a download button (no localStorage interaction — the base64 data is fed directly to an <a> download link). Completed photo strips can be rendered to a Canvas element and downloaded as a single PNG.
+#### 4. Data Reset Option
+A "Leave the Realm" button is available at the bottom of P6. When clicked, a styled confirmation modal appears:
+``` "Are you sure you want to leave? All your progress, photos, and realm preferences will be forgotten. Even Totoro won't remember you." ```
+Two buttons: "Stay in the Realm" (cancel) and "Clear Everything" (confirm). On confirmation, localStorage.clear() is called, wiping all wog_* keys. The page refreshes, and the user is gently redirected to P4 to start fresh.
+
+### Updates Wireframes
+| Page | Base | Other Versions | Notes for coder (Ara)|
+|---|---|---| --- |
+| P4: Realm Entry & Preferences (Create + Update) | . | n/a |  If localStorage has saved data → pre-fill all fields; show "Update Realm" button.If no saved data → show empty form; show "Enter the Realm" button. Validation: Name must not be empty; realm must be selected. On success: brief overlay animation either redirect to P1 (first visit) or stay on P4 (update)|
+| P6: Photobooth in Behind the Website (Create, Read, Update, Delete) | . | . | Camera section: renders only after user clicks "Open Photobooth" (lazy load; permission requested at that point), Photos stored as base64 in wog_photos[] array (max 12), Strip config stored in wog_photostrips[] (frame id, sticker data, photo indices), Edit button re-opens photo strip Editor with pre-loaded saved config, Delete triggers soft confirm modal ("Send to the spirit world?") |
+| P5: Trivia Progress & Personalization (Read + Update) | . | . | Page reads localStorage on load; gracefully degrades if no data, All progress updates (trivia score, creature finds) immediately write back to wog_trivia_progress in localStorage, Easter egg section conditionally rendered based on opt-in flag, Konami Code easter egg checks for wog_name before triggering |
+|  P6: Data Reset Panel (Delete All)  | . | . | n/a |
+
+
