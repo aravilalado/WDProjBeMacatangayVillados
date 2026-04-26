@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Open+Sans:wght@400;600;700&display=swap');
 
-/* =============================================
-   FIX: defined all missing CSS variables used
-   by the footer and elsewhere
-   ============================================= */
 :root {
   --bg-darker: #18211b;
   --color-accent: #e6d36a;
@@ -15,8 +11,6 @@
   box-sizing: border-box;
 }
 
-/* FIX: font-size was 150% which is very large on mobile.
-   clamp() scales smoothly: ~100% on phones, up to 150% on big screens */
 html {
   font-size: clamp(100%, 1.5vw + 0.5rem, 150%);
 }

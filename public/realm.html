@@ -3,188 +3,1191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whispers of Ghibli</title>
+  <title>The Ghibli Realm — Whispers of Ghibli</title>
   <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
-  <link rel="stylesheet" href="realm.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="realm.css">
 </head>
 <body>
 
+<!-- CANVAS: FALLING LEAVES / SOOT SPRITES -->
+<canvas id="particle-canvas"></canvas>
+
 <!-- NAV -->
 <nav class="topbar">
-    <div class="logo">Whispers of Ghibli</div>
-    <ul>
+  <div class="logo">Whispers of Ghibli</div>
+  <ul id="navUl">
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realms.html">Realms</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/whispers.html">Whispers</a></li>
+    <li><a href="#" class="active">Realms</a></li>
     <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/behind.html">Sources</a></li>
-    </ul>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
 </nav>
 
-<!-- HEADER CAROUSEL -->
-<section class="header-carousel">
-  <div class="carousel">
-    <div class="carousel-slide"><img src="one.gif" alt="slide1"></div>
-    <div class="carousel-slide"><img src="two.gif" alt="slide2"></div>
-    <div class="carousel-slide"><img src="three.gif" alt="slide3"></div>
-    <div class="carousel-slide"><img src="four.gif" alt="slide4"></div>
-  </div>
-  <h2 class="carousel-header">Icons of Ghibli</h2>
-</section>
+<!-- ═══════════════════════════════════════════
+     PAGE: REALM ENTRY (shown when not logged in / updating)
+     ═══════════════════════════════════════════ -->
+<div id="page-entry" class="page active">
 
-<!-- LEAVES -->
-<canvas id="leaves"></canvas>
-
-<!-- FORM -->
-<form method="post" action="submit" onsubmit="return confirmSubmit()" onreset="return confirmReset()">
-
-    <label>
-      Username
-      <input type="text" name="user" required onblur="checkEmpty(this)">
-    </label>
-</br>
-
-    <label>
-      Preferred Name
-      <input type="text" name="name" required onblur="checkEmpty(this)">
-    </label>
-</br>
-
-    <label>
-      Email Address:
-      <input type="email" name="email" required placeholder="user@pshs.edu.ph" onblur="checkEmpty(this)">
-    </label>
-</br>
-
-    <label>
-      Mobile Number:
-      <input type="text" name="MobileNum" required onblur="checkEmpty(this)">
-    </label>
-</br>
-
-    <label>
-      Realm
-      <select name="gradeLevel" required onblur="checkEmpty(this)">
-        <option value="">-- Select --</option>
-        <option>Default</option>
-        <option>Howl’s Moving castle</option>
-        <option>Spirited Away</option>
-        <option>My Neighbor Totoro</option>
-        <option>Ponyo</option>
-        <option>Kiki's Delivery Service</option>
-        <option>Momo</option>
-        <option>Princess Mononoke</option>
-      </select>
-    </label>
-</br>
-
-    <label>
-      Enable Secret Deliveries? (pop-ups whenever you open the site)
-      <div class="radio-group">
-        <input type="radio" name="status" value="enableSD" required> Yes
-        <input type="radio" name="status" value="disableSD"> No
-      </div>
-    </label>
-</br>
-
-    <button type="submit">Enter Realm</button>
-    <input type="reset" value="Clear">
-</form>
-
-  <!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-content">
-        <div class="sources">
-            <h4>Sources / Credits</h4>
-            <ul>
-                <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. Retrieved from <a href="https://www.ghibli.jp" target="_blank">https://www.ghibli.jp</a></li>
-                <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. Retrieved from <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">https://ghibli.fandom.com/wiki/Ghibli_Wiki</a></li>
-            </ul>
-        </div>
-        <div class="repo-link">
-            <h4>Repository</h4>
-            <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
-        </div>
+  <!-- HERO -->
+  <section class="realm-hero">
+    <div class="realm-hero-bg"></div>
+    <div class="realm-hero-overlay"></div>
+    <div class="realm-hero-content">
+      <div class="firefly-field" id="fireflies"></div>
+      <p class="realm-eyebrow" id="hero-eyebrow">✦ Step Through the Veil ✦</p>
+      <h1 class="realm-title" id="realm-title-text"></h1>
+      <p class="realm-subtitle">Every realm has a door. Yours is waiting.</p>
     </div>
-    <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
+    <!-- Floating Totoro leaves drag zone -->
+    <div id="leaf-zone" class="leaf-zone" aria-label="Drag the leaf to enter">
+      <div class="leaf-instruction">Drag a leaf to open the gate ↓</div>
+      <div class="draggable-leaf" id="dragleaf" draggable="true" title="Drag me!">🍃</div>
+    </div>
+    <div id="leaf-drop" class="leaf-drop-zone" aria-label="Drop here">
+      <span>Drop here to enter ✦</span>
+    </div>
+  </section>
+
+  <!-- HIDDEN CREATURES BAR -->
+  <div class="creature-bar">
+    <span class="creature-hint">Psst… click somewhere to reveal hidden creatures 👁</span>
+    <div class="creature-spots" id="creatureSpots">
+      <div class="creature-spot" data-creature="🌱" data-name="Kodama" title="Click!"></div>
+      <div class="creature-spot" data-creature="🖤" data-name="Soot Sprite" title="Click!"></div>
+      <div class="creature-spot" data-creature="🌿" data-name="Forest Spirit" title="Click!"></div>
+      <div class="creature-spot" data-creature="🐾" data-name="Catbus" title="Click!"></div>
+      <div class="creature-spot" data-creature="🌙" data-name="Moonspirit" title="Click!"></div>
+    </div>
+    <div class="found-counter">Found: <span id="found-count">0</span> / 5 hidden creatures</div>
+  </div>
+
+  <!-- REALM ENTRY FORM -->
+  <section class="entry-section">
+    <div class="entry-card">
+      <div class="entry-card-header">
+        <div class="entry-icon">🌳</div>
+        <h2 id="form-title">Enter the Realm</h2>
+        <p id="form-subtitle">Tell us who you are, traveller.</p>
+      </div>
+
+      <form id="realm-form" novalidate>
+        <!-- Name -->
+        <div class="field-group">
+          <label for="wog-name">Your Name in the Realm</label>
+          <input type="text" id="wog-name" name="wog_name" placeholder="e.g. Chihiro, Kiki, Nausicaä…" autocomplete="off" />
+          <span class="field-err" id="err-name"></span>
+        </div>
+
+        <!-- Favourite realm/film -->
+        <div class="field-group">
+          <label for="wog-realm">Your Ghibli Realm</label>
+          <select id="wog-realm" name="wog_realm">
+            <option value="">— Choose your realm —</option>
+            <option value="spirited">Spirited Away — The Bathhouse</option>
+            <option value="totoro">My Neighbor Totoro — Satsuki's Forest</option>
+            <option value="mononoke">Princess Mononoke — Iron Town</option>
+            <option value="howl">Howl's Moving Castle — The Moving Castle</option>
+            <option value="kiki">Kiki's Delivery Service — Koriko City</option>
+            <option value="nausicaa">Nausicaä — Valley of the Wind</option>
+            <option value="ponyo">Ponyo — Fujimoto's Undersea Kingdom</option>
+            <option value="laputa">Castle in the Sky — Laputa</option>
+          </select>
+          <span class="field-err" id="err-realm"></span>
+        </div>
+
+        <!-- Activities (multi-checkbox) -->
+        <div class="field-group">
+          <label>Activities You Love</label>
+          <div class="checkbox-grid">
+            <label class="check-label"><input type="checkbox" name="wog_activities" value="trivia"> 🧩 Trivia</label>
+            <label class="check-label"><input type="checkbox" name="wog_activities" value="explore"> 🗺 Exploring</label>
+            <label class="check-label"><input type="checkbox" name="wog_activities" value="collect"> 🌸 Collecting</label>
+            <label class="check-label"><input type="checkbox" name="wog_activities" value="music"> 🎵 Ambience</label>
+          </div>
+        </div>
+
+        <!-- Easter egg opt-in -->
+        <div class="field-group">
+          <label class="check-label toggle-label">
+            <input type="checkbox" id="wog-easter" name="wog_easter_eggs" value="yes">
+            <span class="toggle-track"></span>
+            <span>Unlock secret Easter Eggs 🥚</span>
+          </label>
+        </div>
+
+        <!-- Ambience toggle -->
+        <div class="field-group sound-row">
+          <label>Ambience Sound</label>
+          <div class="sound-btns">
+            <button type="button" class="sound-btn active" data-sound="forest" onclick="setSound(this,'forest')">🌲 Forest</button>
+            <button type="button" class="sound-btn" data-sound="wind" onclick="setSound(this,'wind')">💨 Wind</button>
+            <button type="button" class="sound-btn" data-sound="chimes" onclick="setSound(this,'chimes')">🔔 Chimes</button>
+            <button type="button" class="sound-btn" data-sound="off" onclick="setSound(this,'off')">🔇 Off</button>
+          </div>
+        </div>
+
+        <button type="submit" class="realm-btn" id="submit-btn">
+          <span id="submit-label">✦ Enter the Realm ✦</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="quick-links">
+      <a href="https://www.ghibli-museum.jp" target="_blank" class="qlink">🏛 Ghibli Museum</a>
+      <a href="https://ghibli.fandom.com" target="_blank" class="qlink">📖 Ghibli Wiki</a>
+      <a href="#" onclick="openQuiz(); return false;" class="qlink">🧩 Quick Trivia</a>
+    </div>
+  </section>
+
+  <!-- CHARACTER DRESS-UP MINI SECTION -->
+  <section class="dressup-section">
+    <h3 class="section-eyebrow">✦ Character Look ✦</h3>
+    <p class="section-sub">Hover each character to discover their realm.</p>
+    <div class="character-row" id="characterRow">
+      <div class="char-card" data-film="Spirited Away" data-quote="No-Face hungers for connection — just like us." data-emoji="👺">
+        <div class="char-avatar">👺</div>
+        <div class="char-name">No-Face</div>
+        <div class="char-reveal">Spirited Away<br><em>"No-Face hungers for connection."</em></div>
+      </div>
+      <div class="char-card" data-film="My Neighbor Totoro" data-quote="Totoro is always watching over the forest." data-emoji="🌳">
+        <div class="char-avatar">🌳</div>
+        <div class="char-name">Totoro</div>
+        <div class="char-reveal">My Neighbor Totoro<br><em>"Always watching over the forest."</em></div>
+      </div>
+      <div class="char-card" data-film="Kiki's Delivery Service" data-quote="Kiki found magic in independence." data-emoji="🧹">
+        <div class="char-avatar">🧹</div>
+        <div class="char-name">Kiki</div>
+        <div class="char-reveal">Kiki's Delivery Service<br><em>"Magic in independence."</em></div>
+      </div>
+      <div class="char-card" data-film="Princess Mononoke" data-quote="San fights for the forest and her wolf-family." data-emoji="🐺">
+        <div class="char-avatar">🐺</div>
+        <div class="char-name">San</div>
+        <div class="char-reveal">Princess Mononoke<br><em>"Fighting for the forest."</em></div>
+      </div>
+      <div class="char-card" data-film="Howl's Moving Castle" data-quote="Howl hides his heart behind beauty." data-emoji="🔥">
+        <div class="char-avatar">🔥</div>
+        <div class="char-name">Howl</div>
+        <div class="char-reveal">Howl's Moving Castle<br><em>"Hiding his heart behind beauty."</em></div>
+      </div>
+      <div class="char-card" data-film="Nausicaä" data-quote="Nausicaä speaks to toxic forests with compassion." data-emoji="🌬">
+        <div class="char-avatar">🌬</div>
+        <div class="char-name">Nausicaä</div>
+        <div class="char-reveal">Valley of the Wind<br><em>"Compassion for toxic forests."</em></div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-entry -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: TRIVIA REALM (shown after login)
+     ═══════════════════════════════════════════ -->
+<div id="page-trivia" class="page">
+
+  <!-- TRIVIA HERO -->
+  <section class="trivia-hero">
+    <div class="trivia-hero-bg" id="trivia-hero-bg"></div>
+    <div class="trivia-hero-overlay"></div>
+    <div class="trivia-hero-content">
+      <p class="realm-eyebrow">✦ Hidden Whispers ✦</p>
+      <h1>Welcome back, <span id="greeting-name">traveller</span>!</h1>
+      <p class="trivia-realm-label">Realm: <span id="greeting-realm">Unknown</span></p>
+    </div>
+    <!-- Fireflies -->
+    <div class="firefly-field" id="fireflies2"></div>
+  </section>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-strip">
+    <div class="progress-inner">
+      <span class="progress-label">Secrets Discovered</span>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+      <span class="progress-fraction" id="progress-fraction">0 / 30</span>
+    </div>
+    <button class="konami-hint" id="konami-hint-btn" style="display:none;" onclick="triggerKonamiEgg()">🥚 Secret Unlocked!</button>
+  </div>
+
+  <!-- TABS: TRIVIA | SECRETS | PREFERENCES -->
+  <div class="trivia-tab-bar">
+    <button class="trivia-tab active" data-ttab="trivia" onclick="switchTTab(this,'trivia')">🧩 Trivia</button>
+    <button class="trivia-tab" data-ttab="secrets" onclick="switchTTab(this,'secrets')">👁 Hidden Whispers</button>
+    <button class="trivia-tab" data-ttab="prefs" onclick="switchTTab(this,'prefs')">⚙ My Realm</button>
+  </div>
+
+  <!-- TAB: TRIVIA -->
+  <div class="trivia-panel active" id="ttab-trivia">
+    <div class="trivia-layout">
+
+      <!-- QUIZ BOX -->
+      <div class="quiz-box">
+        <div class="quiz-header">
+          <span class="quiz-q-num" id="quiz-q-num">Question 1 of 10</span>
+          <div class="quiz-timer" id="quiz-timer">
+            <span id="timer-display">20</span>s
+          </div>
+        </div>
+        <div class="quiz-question" id="quiz-question">Loading question…</div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="realm-btn slim" id="quiz-next-btn" onclick="nextQuestion()" style="display:none;">Next →</button>
+      </div>
+
+      <!-- SCORE + RANDOM FACT -->
+      <div class="quiz-sidebar">
+        <div class="score-card">
+          <div class="score-icon">✨</div>
+          <div class="score-val" id="score-display">0</div>
+          <div class="score-label">Spirits Gathered</div>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-label">✦ Random Whisper</div>
+          <div class="fact-text" id="random-fact-text">Loading…</div>
+          <button class="ghost-btn" onclick="showRandomFact()">Another Whisper</button>
+        </div>
+
+        <!-- Soot sprite timed challenge -->
+        <div class="challenge-card" id="challenge-card">
+          <div class="challenge-label">⚡ Soot Sprite Challenge</div>
+          <p>Find all soot sprites before time runs out!</p>
+          <div class="soot-field" id="soot-field"></div>
+          <div class="challenge-timer" id="challenge-timer" style="display:none;">⏱ <span id="c-timer">20</span>s</div>
+          <div class="challenge-result" id="challenge-result"></div>
+          <button class="ghost-btn" onclick="startSootChallenge()">Start Challenge</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPANDABLE FACT CARDS -->
+    <div class="fact-cards-section">
+      <h3 class="section-eyebrow">✦ Hidden Fact Cards ✦</h3>
+      <div class="fact-cards-grid" id="fact-cards-grid"></div>
+    </div>
+  </div>
+
+  <!-- TAB: SECRETS -->
+  <div class="trivia-panel" id="ttab-secrets">
+    <div class="secrets-layout">
+      <div class="secrets-intro">
+        <p>Hidden across the Ghibli realm are creatures, whispers, and ancient secrets.<br>Some are locked — unlock them by playing trivia and reaching score milestones.</p>
+      </div>
+      <div class="secrets-grid" id="secrets-grid"></div>
+    </div>
+  </div>
+
+  <!-- TAB: PREFERENCES (UPDATE REALM) -->
+  <div class="trivia-panel" id="ttab-prefs">
+    <div class="prefs-layout">
+      <div class="prefs-card">
+        <h3>Update My Realm</h3>
+        <p class="prefs-sub">Change your name, realm, or preferences.</p>
+        <form id="update-form" novalidate>
+          <div class="field-group">
+            <label for="upd-name">Name</label>
+            <input type="text" id="upd-name" placeholder="Your realm name" />
+          </div>
+          <div class="field-group">
+            <label for="upd-realm">Realm</label>
+            <select id="upd-realm">
+              <option value="">— Choose —</option>
+              <option value="spirited">Spirited Away</option>
+              <option value="totoro">My Neighbor Totoro</option>
+              <option value="mononoke">Princess Mononoke</option>
+              <option value="howl">Howl's Moving Castle</option>
+              <option value="kiki">Kiki's Delivery Service</option>
+              <option value="nausicaa">Nausicaä</option>
+              <option value="ponyo">Ponyo</option>
+              <option value="laputa">Castle in the Sky</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="check-label toggle-label">
+              <input type="checkbox" id="upd-easter">
+              <span class="toggle-track"></span>
+              <span>Keep Easter Eggs enabled</span>
+            </label>
+          </div>
+          <button type="submit" class="realm-btn slim" id="update-btn">✦ Update My Realm ✦</button>
+        </form>
+        <div class="update-confirm" id="update-confirm" style="display:none;">🌀 Your realm has shifted!</div>
+      </div>
+
+      <!-- LEAVE REALM -->
+      <div class="leave-card">
+        <h4>Leave the Realm</h4>
+        <p>All progress, preferences, and memories will be forgotten. Even Totoro won't remember you.</p>
+        <button class="danger-btn" onclick="openLeaveModal()">Leave the Realm</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-trivia -->
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div style="margin-bottom:0.5rem;">
+    <a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a>
+  </div>
+  <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
 </footer>
 
+
+<!-- ══ MODALS ══ -->
+
+<!-- SUCCESS OVERLAY (enter / update) -->
+<div id="success-overlay" class="overlay-modal">
+  <div class="overlay-inner" id="success-inner">
+    <div class="overlay-icon" id="success-icon">🌿</div>
+    <h2 id="success-title">The gate opens…</h2>
+    <p id="success-msg">Welcome to the realm.</p>
+  </div>
+</div>
+
+<!-- KIKI DELIVERY POPUP -->
+<div id="kiki-popup" class="kiki-popup">
+  <button class="kiki-close" onclick="closeKikiPopup()">✕</button>
+  <div class="kiki-inner">
+    <div class="kiki-icon">🧹</div>
+    <div class="kiki-text">
+      <strong>Special Delivery from Kiki!</strong>
+      <p id="kiki-message">A mysterious package has arrived from Koriko City. Something magical is inside…</p>
+    </div>
+  </div>
+</div>
+
+<!-- LEAVE REALM CONFIRM -->
+<div id="leave-modal" class="overlay-modal">
+  <div class="overlay-inner leave-inner">
+    <div class="overlay-icon">🌫</div>
+    <h2>Are you sure you want to leave?</h2>
+    <p>All your progress, photos, and realm preferences will be forgotten.<br>Even Totoro won't remember you.</p>
+    <div class="leave-btns">
+      <button class="realm-btn slim" onclick="closeLeaveModal()">Stay in the Realm</button>
+      <button class="danger-btn" onclick="clearEverything()">Clear Everything</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK TRIVIA POPUP -->
+<div id="quiz-popup" class="overlay-modal">
+  <div class="overlay-inner quiz-popup-inner">
+    <button class="kiki-close" onclick="closeQuiz()">✕</button>
+    <h2>Quick Trivia! 🧩</h2>
+    <div id="qp-question" class="qp-question"></div>
+    <div id="qp-options" class="qp-options"></div>
+    <div id="qp-feedback" class="qp-feedback"></div>
+    <button class="ghost-btn" id="qp-next" onclick="nextQPQuestion()" style="display:none;">Next →</button>
+  </div>
+</div>
+
+<!-- KONAMI EASTER EGG -->
+<div id="konami-modal" class="overlay-modal">
+  <div class="overlay-inner konami-inner">
+    <div class="konami-anim" id="konami-anim"></div>
+    <h2>✨ Secret Unlocked! ✨</h2>
+    <p>You found the hidden Konami realm. Totoro is proud of you.</p>
+    <button class="realm-btn slim" onclick="closeKonami()">Return to Realm</button>
+  </div>
+</div>
+
+
 <script>
-/* TYPE */
-// Typewriter effect for the header text element.
-const typeEl = document.querySelector('.type');
-const text = typeEl.textContent;
-typeEl.textContent = '';
-let i = 0;
-function type() {
-  if (i < text.length) {
-    typeEl.textContent += text.charAt(i);
-    i++;
-    setTimeout(type, 60);
+/* ═══════════════════════════════════════
+   DATA & STATE
+   ═══════════════════════════════════════ */
+const REALMS = {
+  spirited:  { label: 'Spirited Away — The Bathhouse',        color: '#8b4513', accent: '#cd853f', bg: 'https://raw.githubusercontent.com/aravilalado/WDProjBeMacatangayVillados/main/public/one.gif' },
+  totoro:    { label: 'My Neighbor Totoro — Satsuki\'s Forest', color: '#2d5a27', accent: '#5c9e4a', bg: 'https://raw.githubusercontent.com/aravilalado/WDProjBeMacatangayVillados/main/public/two.gif' },
+  mononoke:  { label: 'Princess Mononoke — Iron Town',         color: '#1c1c1c', accent: '#888',    bg: 'https://raw.githubusercontent.com/aravilalado/WDProjBeMacatangayVillados/main/public/three.gif' },
+  howl:      { label: "Howl's Moving Castle",                  color: '#1a1a4e', accent: '#4a4ab0', bg: 'https://raw.githubusercontent.com/aravilalado/WDProjBeMacatangayVillados/main/public/four.gif' },
+  kiki:      { label: "Kiki's Delivery Service — Koriko City", color: '#2c1e5b', accent: '#9b72cf', bg: '' },
+  nausicaa:  { label: 'Nausicaä — Valley of the Wind',         color: '#1a3a4e', accent: '#5dade2', bg: '' },
+  ponyo:     { label: 'Ponyo — Undersea Kingdom',              color: '#1a5276', accent: '#5dade2', bg: '' },
+  laputa:    { label: 'Castle in the Sky — Laputa',            color: '#1a3025', accent: '#68c060', bg: '' },
+};
+
+const ALL_TRIVIA = [
+  { q: "What is the name of the bathhouse owner in Spirited Away?", a: "Yubaba", opts: ["Zeniba","Yubaba","Lin","Kamaji"], film: "spirited" },
+  { q: "What creature does Totoro use to help plants grow?", a: "His roar / spinning", opts: ["Raindrops","His roar / spinning","Acorn magic","Leaf dance"], film: "totoro" },
+  { q: "In Howl's Moving Castle, what is the name of the fire demon?", a: "Calcifer", opts: ["Heen","Turnip Head","Calcifer","Suliman"], film: "howl" },
+  { q: "What does Kiki's cat Jiji turn into at the end of Kiki's Delivery Service?", a: "A normal cat", opts: ["A spirit","A wizard cat","A normal cat","A bird"], film: "kiki" },
+  { q: "Princess Mononoke is set in which period of Japanese history?", a: "The Muromachi period", opts: ["Edo period","Meiji period","The Muromachi period","Heian period"], film: "mononoke" },
+  { q: "What is the name of the spirit that eats people in Spirited Away?", a: "No-Face", opts: ["Haku","No-Face","The River Spirit","Stink Spirit"], film: "spirited" },
+  { q: "In Nausicaä, what is the toxic jungle called?", a: "Sea of Decay", opts: ["Toxic Forest","Corrupted Woods","Sea of Decay","Death Valley"], film: "nausicaa" },
+  { q: "What is Laputa in Castle in the Sky?", a: "A floating island city", opts: ["A flying ship","A submarine","A floating island city","A hidden mountain"], film: "laputa" },
+  { q: "In Ponyo, what causes the boy Sosuke to find Ponyo?", a: "She gets stuck in a jar", opts: ["She washes ashore","She gets stuck in a jar","She follows his boat","She falls from the sky"], film: "ponyo" },
+  { q: "Who composed the music for most Studio Ghibli films?", a: "Joe Hisaishi", opts: ["Hayao Miyazaki","Joe Hisaishi","Isao Takahata","Yasuyoshi Tokuma"], film: null },
+  { q: "What year was Studio Ghibli founded?", a: "1985", opts: ["1980","1985","1990","1988"], film: null },
+  { q: "Which film features a giant caterpillar-like creature called the Ohmu?", a: "Nausicaä of the Valley of the Wind", opts: ["My Neighbor Totoro","Princess Mononoke","Nausicaä of the Valley of the Wind","Castle in the Sky"], film: "nausicaa" },
+  { q: "What does 'Ghibli' refer to?", a: "A hot Saharan wind", opts: ["A type of spirit","A hot Saharan wind","A mountain in Japan","A fictional island"], film: null },
+  { q: "In Spirited Away, what must Chihiro do to free her parents?", a: "Work at the bathhouse", opts: ["Find a magic stone","Work at the bathhouse","Defeat Yubaba","Cross the sea"], film: "spirited" },
+  { q: "The CatBus appears in which film?", a: "My Neighbor Totoro", opts: ["Kiki's Delivery Service","Ponyo","My Neighbor Totoro","Castle in the Sky"], film: "totoro" },
+];
+
+const RANDOM_FACTS = [
+  "Studio Ghibli's iconic logo features Totoro from 'My Neighbor Totoro' (1988).",
+  "Hayao Miyazaki hand-drew nearly every frame of his early films.",
+  "The Ghibli Museum in Mitaka, Japan has a giant rooftop Totoro made of steel.",
+  "Spirited Away won the Academy Award for Best Animated Feature in 2003.",
+  "No-Face from Spirited Away was inspired by Miyazaki's feelings of loneliness in modern society.",
+  "Kiki's black cat Jiji was voiced by Phil Hartman in the original English dub.",
+  "The Sea of Decay in Nausicaä was based on the concept of nature reclaiming polluted land.",
+  "Calcifer's voice in the English dub of Howl's Moving Castle was Billy Crystal.",
+  "The soot sprites (Makkuro Kurosuke) first appear in My Neighbor Totoro.",
+  "Princess Mononoke took three years to complete with over 144,000 hand-drawn cels.",
+];
+
+const SECRETS = [
+  { id: 1, icon: "🌱", name: "Kodama Whisper",        desc: "Kodama appear when the forest is healthy. Find 5 hidden creatures.",        unlockAt: 0,  easterEgg: false },
+  { id: 2, icon: "🖤", name: "Soot Sprite Colony",    desc: "They move when no one is watching. Score 3 in trivia to reveal.",            unlockAt: 3,  easterEgg: false },
+  { id: 3, icon: "🧹", name: "Kiki's Secret Route",   desc: "Kiki flies a secret path over the ocean at midnight.",                       unlockAt: 5,  easterEgg: true  },
+  { id: 4, icon: "🐺", name: "San's Howl",             desc: "San's wolf-song can calm the Great Forest Spirit.",                          unlockAt: 8,  easterEgg: false },
+  { id: 5, icon: "🔥", name: "Calcifer's Deal",        desc: "Calcifer's fire holds a human heart. Score 10 to unlock.",                   unlockAt: 10, easterEgg: false },
+  { id: 6, icon: "🌊", name: "Ponyo's Origin",         desc: "Ponyo was once a goldfish princess locked away under the sea.",              unlockAt: 12, easterEgg: false },
+  { id: 7, icon: "🌙", name: "Moonspirit's Blessing",  desc: "The Forest Spirit grants life and death at dusk.",                           unlockAt: 15, easterEgg: true  },
+  { id: 8, icon: "🏰", name: "Laputa's Core",          desc: "At Laputa's heart grows an ancient tree holding the kingdom together.",       unlockAt: 20, easterEgg: false },
+  { id: 9, icon: "🌀", name: "The Realm Shift",        desc: "Only those who master all trivia can open the final gate.",                   unlockAt: 30, easterEgg: true  },
+];
+
+const FACT_CARDS = [
+  { title: "The Name 'Ghibli'",   preview: "Did you know the name has military origins?",   full: "Studio Ghibli is named after an Italian scouting aircraft, the Caproni Ca.309 'Ghibli'. Miyazaki, a passionate aviation fan, chose it hoping to 'blow a new wind' through the anime industry." },
+  { title: "Totoro's Symbolism",  preview: "Totoro may represent something beyond a spirit.", full: "Many fans believe Totoro is a deity of the forest, appearing only to children who are pure of heart. Some theories even suggest he is the spirit of death — appearing to guide the sisters." },
+  { title: "Spirited Away's Bath", preview: "The bathhouse has hidden meanings.", full: "The bathhouse in Spirited Away is modeled after traditional Japanese onsen culture. The spirits who visit are Shinto deities called 'kami', coming to rest and recover from the human world's pollution." },
+  { title: "No-Face's Loneliness", preview: "No-Face is more than a monster.", full: "No-Face absorbs the greed of bathhouse workers and becomes corrupted. Miyazaki said he represents people who only find purpose by consuming others' emotions — a critique of modern consumerism." },
+  { title: "San's Name",           preview: "Her name carries a hidden meaning.", full: "San (サン) means 'three' in Japanese, positioning her as the third member of her wolf family after Moro and another cub — emphasizing she was accepted, not merely tolerated." },
+  { title: "Calcifer's Heart",     preview: "A deal sealed with a star.", full: "Calcifer is a fallen star that Howl caught and made a pact with — Howl gave Calcifer his heart to keep him alive, and in return Calcifer powers the castle. It's why Howl fears death so deeply." },
+];
+
+/* ═══════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════ */
+let state = {
+  name: '', realm: '', activities: [], easterEggs: false, sound: 'forest',
+  trivia_progress: { score: 0, discovered: 0, answered: [] },
+  creaturesFound: []
+};
+
+function loadState() {
+  const raw = localStorage.getItem('wog_user');
+  if (raw) { try { Object.assign(state, JSON.parse(raw)); } catch(e){} }
+  // legacy key support
+  const legacyName = localStorage.getItem('wog_username');
+  if (legacyName && !state.name) state.name = legacyName;
+  const legacyProgress = localStorage.getItem('wog_trivia_progress');
+  if (legacyProgress) { try { state.trivia_progress = JSON.parse(legacyProgress); } catch(e){} }
+}
+
+function saveState() {
+  localStorage.setItem('wog_user', JSON.stringify(state));
+  localStorage.setItem('wog_username', state.name);
+  localStorage.setItem('wog_trivia_progress', JSON.stringify(state.trivia_progress));
+}
+
+function isLoggedIn() { return !!(state.name && state.realm); }
+
+/* ═══════════════════════════════════════
+   PARTICLE CANVAS
+   ═══════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+
+  // Mix of leaves and soot sprites
+  const particles = Array.from({length: 35}, (_, i) => ({
+    x: Math.random() * w, y: Math.random() * h,
+    s: Math.random() * 1.5 + 0.3,
+    r: Math.random() * Math.PI * 2,
+    type: i < 20 ? 'leaf' : 'soot',
+    opacity: Math.random() * 0.5 + 0.2,
+    wobble: Math.random() * 0.02 + 0.005,
+    wobbleOff: Math.random() * Math.PI * 2
+  }));
+
+  let t = 0;
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    t += 0.01;
+    particles.forEach(p => {
+      p.y += p.s * 0.35;
+      p.x += Math.sin(t * 0.5 + p.wobbleOff) * p.wobble * 60;
+      p.r += 0.006;
+      if (p.y > h + 20) { p.y = -20; p.x = Math.random() * w; }
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      if (p.type === 'leaf') {
+        ctx.fillStyle = '#78966078';
+        ctx.beginPath(); ctx.ellipse(0,0,7,3,0,0,Math.PI*2); ctx.fill();
+      } else {
+        ctx.fillStyle = 'rgba(60,40,60,0.55)';
+        ctx.beginPath(); ctx.arc(0,0,3,0,Math.PI*2); ctx.fill();
+        // tiny eyes
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.beginPath(); ctx.arc(-1,-0.8,0.7,0,Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(1,-0.8,0.7,0,Math.PI*2); ctx.fill();
+      }
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ═══════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════ */
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navUl').classList.toggle('open');
+});
+
+/* ═══════════════════════════════════════
+   FIREFLIES
+   ═══════════════════════════════════════ */
+function spawnFireflies(containerId, count) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const f = document.createElement('div');
+    f.className = 'firefly';
+    f.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      animation-delay: ${Math.random()*4}s;
+      animation-duration: ${2 + Math.random()*3}s;
+    `;
+    el.appendChild(f);
   }
 }
-setTimeout(type, 1200);
 
-/* FORM SUBMISSION AND RESET */
-// Ask confirmation before submit/reset and mark empty required fields.
-
- function confirmSubmit() {
-      return confirm("Are you sure you want to submit this form?");
+/* ═══════════════════════════════════════
+   TYPEWRITER TITLE
+   ═══════════════════════════════════════ */
+function typewrite(el, text, speed=90) {
+  el.textContent = '';
+  let i = 0;
+  function tick() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(tick, speed);
     }
-
-    function confirmReset() {
-      return confirm("Are you sure you want to clear all inputs?");
-    }
-
-    function checkEmpty(el) {
-      if (el.value.trim() === "") {
-        el.classList.add("error");
-      } else {
-        el.classList.remove("error");
-      }
-    }
-
-/* LEAVES */
-// Draw moving leaf shapes on the fullscreen background canvas.
-const canvas = document.getElementById('leaves');
-const ctx = canvas.getContext('2d');
-let w, h;
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+  }
+  tick();
 }
-window.addEventListener('resize', resize);
-resize();
 
-const leaves = Array.from({ length: 30 }, () => ({
-  x: Math.random() * w,
-  y: Math.random() * h,
-  s: Math.random() * 2 + 1,
-  r: Math.random() * Math.PI
-}));
+/* ═══════════════════════════════════════
+   LEAF DRAG
+   ═══════════════════════════════════════ */
+const leaf = document.getElementById('dragleaf');
+const dropZone = document.getElementById('leaf-drop');
+let leafDragging = false;
 
-function animateLeaves() {
-  ctx.clearRect(0,0,w,h);
-  leaves.forEach(l => {
-    l.y += l.s * 0.5;
-    l.x += Math.sin(l.y * 0.01);
-    l.r += 0.01;
-    if (l.y > h) l.y = -20;
-    ctx.save();
-    ctx.translate(l.x, l.y);
-    ctx.rotate(l.r);
-    ctx.fillStyle = 'rgba(120,150,120,0.6)';
-    ctx.beginPath();
-    ctx.ellipse(0,0,6,3,0,0,Math.PI*2);
-    ctx.fill();
-    ctx.restore();
+leaf.addEventListener('dragstart', e => {
+  leafDragging = true;
+  e.dataTransfer.setData('text', 'leaf');
+  leaf.classList.add('dragging');
+  dropZone.classList.add('active');
+});
+leaf.addEventListener('dragend', () => {
+  leafDragging = false;
+  leaf.classList.remove('dragging');
+  dropZone.classList.remove('active');
+});
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('hover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('hover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('active','hover');
+  // Scroll to form
+  document.querySelector('.entry-section').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ═══════════════════════════════════════
+   HIDDEN CREATURES
+   ═══════════════════════════════════════ */
+const creatureSpots = document.querySelectorAll('.creature-spot');
+let foundCreatures = 0;
+
+creatureSpots.forEach(spot => {
+  spot.addEventListener('click', () => {
+    if (spot.classList.contains('found')) return;
+    spot.classList.add('found');
+    spot.textContent = spot.dataset.creature;
+    spot.title = spot.dataset.name;
+    foundCreatures++;
+    document.getElementById('found-count').textContent = foundCreatures;
+    // update state
+    if (!state.creaturesFound.includes(spot.dataset.name)) {
+      state.creaturesFound.push(spot.dataset.name);
+      state.trivia_progress.discovered = Math.min(30, (state.trivia_progress.discovered||0) + 1);
+      saveState();
+    }
+    // Soot sprite pop animation
+    spot.style.animation = 'none';
+    spot.getBoundingClientRect();
+    spot.style.animation = 'spotPop 0.4s ease';
   });
-  requestAnimationFrame(animateLeaves);
-}
-animateLeaves();
+});
 
+/* ═══════════════════════════════════════
+   SOUND TOGGLE
+   ═══════════════════════════════════════ */
+function setSound(btn, sound) {
+  document.querySelectorAll('.sound-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.sound = sound;
+}
+
+/* ═══════════════════════════════════════
+   FORM LOGIC
+   ═══════════════════════════════════════ */
+function prefillForm() {
+  if (!state.name) return;
+  document.getElementById('wog-name').value = state.name;
+  document.getElementById('wog-realm').value = state.realm;
+  document.getElementById('wog-easter').checked = state.easterEggs;
+  // activities
+  document.querySelectorAll('input[name="wog_activities"]').forEach(cb => {
+    cb.checked = state.activities.includes(cb.value);
+  });
+  // sound
+  document.querySelectorAll('.sound-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.sound === state.sound);
+  });
+  // update UI to "update" mode if returning
+  if (isLoggedIn()) {
+    document.getElementById('form-title').textContent = 'Update My Realm';
+    document.getElementById('form-subtitle').textContent = 'Your preferences are pre-filled. Adjust and save.';
+    document.getElementById('submit-label').textContent = '✦ Update My Realm ✦';
+  }
+}
+
+document.getElementById('realm-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('wog-name').value.trim();
+  const realm = document.getElementById('wog-realm').value;
+  let valid = true;
+
+  document.getElementById('err-name').textContent = '';
+  document.getElementById('err-realm').textContent = '';
+
+  if (!name) {
+    document.getElementById('err-name').textContent = 'Please enter your realm name.';
+    valid = false;
+  }
+  if (!realm) {
+    document.getElementById('err-realm').textContent = 'Please choose your realm.';
+    valid = false;
+  }
+  if (!valid) return;
+
+  const activities = [...document.querySelectorAll('input[name="wog_activities"]:checked')].map(c => c.value);
+  const easterEggs = document.getElementById('wog-easter').checked;
+  const isUpdate = isLoggedIn();
+
+  state.name = name;
+  state.realm = realm;
+  state.activities = activities;
+  state.easterEggs = easterEggs;
+  saveState();
+
+  if (isUpdate) {
+    showSuccessOverlay('🌀', 'Your realm has shifted!', 'Your preferences have been updated.', () => switchToTrivia());
+  } else {
+    showSuccessOverlay('🌿', 'The gate opens…', 'Welcome to the Ghibli Realm, ' + name + '!', () => switchToTrivia());
+  }
+});
+
+/* ═══════════════════════════════════════
+   PAGE SWITCH
+   ═══════════════════════════════════════ */
+function switchToTrivia() {
+  document.getElementById('page-entry').classList.remove('active');
+  document.getElementById('page-trivia').classList.add('active');
+  initTriviaPage();
+  window.scrollTo(0,0);
+}
+
+function switchToEntry() {
+  document.getElementById('page-trivia').classList.remove('active');
+  document.getElementById('page-entry').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ═══════════════════════════════════════
+   INIT TRIVIA PAGE
+   ═══════════════════════════════════════ */
+function initTriviaPage() {
+  // Greeting
+  document.getElementById('greeting-name').textContent = state.name || 'traveller';
+  const realmInfo = REALMS[state.realm] || {};
+  document.getElementById('greeting-realm').textContent = realmInfo.label || state.realm;
+
+  // Hero bg
+  if (realmInfo.bg) {
+    document.getElementById('trivia-hero-bg').style.backgroundImage = `url('${realmInfo.bg}')`;
+  }
+
+  // Fireflies
+  spawnFireflies('fireflies2', 15);
+
+  // Progress
+  updateProgress();
+
+  // Quiz
+  initQuiz();
+
+  // Random fact
+  showRandomFact();
+
+  // Fact cards
+  renderFactCards();
+
+  // Secrets
+  renderSecrets();
+
+  // Pre-fill update form
+  document.getElementById('upd-name').value = state.name;
+  document.getElementById('upd-realm').value = state.realm;
+  document.getElementById('upd-easter').checked = state.easterEggs;
+
+  // Konami hint
+  if (state.easterEggs) document.getElementById('konami-hint-btn').style.display = 'inline-block';
+
+  // Kiki popup randomly
+  setTimeout(() => {
+    if (Math.random() > 0.5) triggerKikiDelivery();
+  }, 8000 + Math.random() * 12000);
+}
+
+/* ═══════════════════════════════════════
+   PROGRESS
+   ═══════════════════════════════════════ */
+function updateProgress() {
+  const disc = state.trivia_progress.discovered || 0;
+  const total = 30;
+  const pct = (disc / total) * 100;
+  document.getElementById('progress-bar-fill').style.width = pct + '%';
+  document.getElementById('progress-fraction').textContent = `${disc} / ${total}`;
+  document.getElementById('score-display').textContent = state.trivia_progress.score || 0;
+}
+
+/* ═══════════════════════════════════════
+   QUIZ
+   ═══════════════════════════════════════ */
+let currentQ = 0;
+let quizQuestions = [];
+let timerInterval = null;
+let timeLeft = 20;
+
+function initQuiz() {
+  // Filter by realm if possible
+  let pool = ALL_TRIVIA.filter(q => !q.film || q.film === state.realm || Math.random() > 0.5);
+  if (pool.length < 5) pool = ALL_TRIVIA;
+  // Shuffle
+  quizQuestions = pool.sort(() => Math.random() - 0.5).slice(0, 10);
+  currentQ = 0;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (currentQ >= quizQuestions.length) {
+    document.getElementById('quiz-question').textContent = '✨ You\'ve completed this round! Great job!';
+    document.getElementById('quiz-options').innerHTML = '';
+    document.getElementById('quiz-next-btn').style.display = 'none';
+    document.getElementById('quiz-q-num').textContent = 'Round Complete';
+    clearInterval(timerInterval);
+    return;
+  }
+
+  const q = quizQuestions[currentQ];
+  document.getElementById('quiz-q-num').textContent = `Question ${currentQ + 1} of ${quizQuestions.length}`;
+  document.getElementById('quiz-question').textContent = q.q;
+  document.getElementById('quiz-feedback').textContent = '';
+  document.getElementById('quiz-next-btn').style.display = 'none';
+
+  const optsEl = document.getElementById('quiz-options');
+  optsEl.innerHTML = '';
+  [...q.opts].sort(() => Math.random()-0.5).forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => answerQuestion(opt, q.a, btn);
+    optsEl.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 20;
+  document.getElementById('timer-display').textContent = timeLeft;
+  document.getElementById('quiz-timer').classList.remove('urgent');
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timer-display').textContent = timeLeft;
+    if (timeLeft <= 5) document.getElementById('quiz-timer').classList.add('urgent');
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      const fb = document.getElementById('quiz-feedback');
+      fb.textContent = `⏱ Time's up! The answer was: ${quizQuestions[currentQ].a}`;
+      fb.className = 'quiz-feedback wrong';
+      document.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+      document.getElementById('quiz-next-btn').style.display = 'inline-block';
+    }
+  }, 1000);
+}
+
+function answerQuestion(chosen, correct, btn) {
+  clearInterval(timerInterval);
+  const fb = document.getElementById('quiz-feedback');
+  document.querySelectorAll('.quiz-opt').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct');
+  });
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✓ Correct! A spirit smiles upon you.';
+    fb.className = 'quiz-feedback right';
+    state.trivia_progress.score = (state.trivia_progress.score || 0) + 1;
+    state.trivia_progress.discovered = Math.min(30, (state.trivia_progress.discovered || 0) + 1);
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = `✕ Not quite. The answer was: ${correct}`;
+    fb.className = 'quiz-feedback wrong';
+  }
+  saveState();
+  updateProgress();
+  renderSecrets();
+  document.getElementById('quiz-next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  renderQuestion();
+}
+
+/* ═══════════════════════════════════════
+   RANDOM FACT
+   ═══════════════════════════════════════ */
+function showRandomFact() {
+  const el = document.getElementById('random-fact-text');
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.textContent = RANDOM_FACTS[Math.floor(Math.random() * RANDOM_FACTS.length)];
+    el.style.opacity = 1;
+  }, 200);
+}
+
+/* ═══════════════════════════════════════
+   FACT CARDS
+   ═══════════════════════════════════════ */
+function renderFactCards() {
+  const grid = document.getElementById('fact-cards-grid');
+  grid.innerHTML = '';
+  FACT_CARDS.forEach(card => {
+    const el = document.createElement('div');
+    el.className = 'fact-card-item';
+    el.innerHTML = `
+      <div class="fci-preview">${card.title}</div>
+      <div class="fci-hint">${card.preview}</div>
+      <div class="fci-full" style="display:none;">${card.full}</div>
+      <button class="ghost-btn fci-btn">Reveal Secret</button>
+    `;
+    const btn = el.querySelector('.fci-btn');
+    const full = el.querySelector('.fci-full');
+    const hint = el.querySelector('.fci-hint');
+    btn.addEventListener('click', () => {
+      const open = full.style.display !== 'none';
+      full.style.display = open ? 'none' : 'block';
+      hint.style.display = open ? 'block' : 'none';
+      btn.textContent = open ? 'Reveal Secret' : 'Hide Secret';
+      if (!open) {
+        state.trivia_progress.discovered = Math.min(30, (state.trivia_progress.discovered || 0) + 1);
+        saveState();
+        updateProgress();
+      }
+    });
+    grid.appendChild(el);
+  });
+}
+
+/* ═══════════════════════════════════════
+   SECRETS GRID
+   ═══════════════════════════════════════ */
+function renderSecrets() {
+  const grid = document.getElementById('secrets-grid');
+  if (!grid) return;
+  const score = state.trivia_progress.score || 0;
+  const easterOk = state.easterEggs;
+  grid.innerHTML = '';
+  SECRETS.forEach(s => {
+    const unlocked = score >= s.unlockAt && (!s.easterEgg || easterOk);
+    const el = document.createElement('div');
+    el.className = 'secret-card ' + (unlocked ? 'unlocked' : 'locked');
+    el.innerHTML = unlocked
+      ? `<div class="secret-icon">${s.icon}</div><div class="secret-name">${s.name}</div><div class="secret-desc">${s.desc}</div>`
+      : `<div class="secret-icon">🔒</div><div class="secret-name">Hidden</div><div class="secret-desc">Score ${s.unlockAt} to unlock${s.easterEgg ? ' (Easter Eggs required)' : ''}</div>`;
+    grid.appendChild(el);
+  });
+}
+
+/* ═══════════════════════════════════════
+   SOOT SPRITE CHALLENGE
+   ═══════════════════════════════════════ */
+let sootFound = 0, sootTotal = 8, sootTimer = null;
+
+function startSootChallenge() {
+  sootFound = 0;
+  sootTotal = 8;
+  const field = document.getElementById('soot-field');
+  const timerEl = document.getElementById('challenge-timer');
+  const result = document.getElementById('challenge-result');
+  result.textContent = '';
+  timerEl.style.display = 'block';
+
+  field.innerHTML = '';
+  for (let i = 0; i < sootTotal; i++) {
+    const soot = document.createElement('div');
+    soot.className = 'soot-sprite';
+    soot.textContent = '🖤';
+    soot.style.cssText = `left:${Math.random()*85}%; top:${Math.random()*80}%; animation-delay:${Math.random()*2}s`;
+    soot.onclick = () => {
+      if (soot.classList.contains('caught')) return;
+      soot.classList.add('caught');
+      sootFound++;
+      if (sootFound >= sootTotal) {
+        clearInterval(sootTimer);
+        result.textContent = '🎉 All sprites caught! Spirits gathered.';
+        state.trivia_progress.score = (state.trivia_progress.score||0) + 3;
+        state.trivia_progress.discovered = Math.min(30, (state.trivia_progress.discovered||0) + 2);
+        saveState(); updateProgress();
+      }
+    };
+    field.appendChild(soot);
+  }
+
+  let t = 20;
+  document.getElementById('c-timer').textContent = t;
+  clearInterval(sootTimer);
+  sootTimer = setInterval(() => {
+    t--;
+    document.getElementById('c-timer').textContent = t;
+    if (t <= 0) {
+      clearInterval(sootTimer);
+      if (sootFound < sootTotal) result.textContent = `⏱ Time's up! Caught ${sootFound}/${sootTotal}.`;
+    }
+  }, 1000);
+}
+
+/* ═══════════════════════════════════════
+   TRIVIA TABS
+   ═══════════════════════════════════════ */
+function switchTTab(btn, tab) {
+  document.querySelectorAll('.trivia-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.trivia-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ttab-' + tab).classList.add('active');
+}
+
+/* ═══════════════════════════════════════
+   UPDATE FORM
+   ═══════════════════════════════════════ */
+document.getElementById('update-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('upd-name').value.trim();
+  const realm = document.getElementById('upd-realm').value;
+  if (!name || !realm) return;
+  state.name = name;
+  state.realm = realm;
+  state.easterEggs = document.getElementById('upd-easter').checked;
+  saveState();
+  document.getElementById('update-confirm').style.display = 'block';
+  setTimeout(() => document.getElementById('update-confirm').style.display = 'none', 3000);
+  // Refresh greeting
+  document.getElementById('greeting-name').textContent = name;
+  const ri = REALMS[realm] || {};
+  document.getElementById('greeting-realm').textContent = ri.label || realm;
+  if (state.easterEggs) document.getElementById('konami-hint-btn').style.display = 'inline-block';
+});
+
+/* ═══════════════════════════════════════
+   KIKI DELIVERY
+   ═══════════════════════════════════════ */
+const KIKI_MESSAGES = [
+  "A delivery from Koriko City! Kiki left a small charm on your doorstep.",
+  "Jiji says hello! Kiki flew by and dropped something magical.",
+  "Special delivery from Kiki's Delivery Service — a whisper from the spirit world.",
+  "Kiki managed to sneak through the clouds with a surprise just for you!",
+];
+
+function triggerKikiDelivery() {
+  document.getElementById('kiki-message').textContent = KIKI_MESSAGES[Math.floor(Math.random() * KIKI_MESSAGES.length)];
+  const popup = document.getElementById('kiki-popup');
+  popup.classList.add('show');
+  setTimeout(() => popup.classList.remove('show'), 9000);
+  state.trivia_progress.discovered = Math.min(30, (state.trivia_progress.discovered||0) + 1);
+  saveState(); updateProgress();
+}
+
+function closeKikiPopup() {
+  document.getElementById('kiki-popup').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════
+   SUCCESS OVERLAY
+   ═══════════════════════════════════════ */
+function showSuccessOverlay(icon, title, msg, cb) {
+  document.getElementById('success-icon').textContent = icon;
+  document.getElementById('success-title').textContent = title;
+  document.getElementById('success-msg').textContent = msg;
+  const ov = document.getElementById('success-overlay');
+  ov.classList.add('open');
+  setTimeout(() => {
+    ov.classList.remove('open');
+    if (cb) cb();
+  }, 2200);
+}
+
+/* ═══════════════════════════════════════
+   LEAVE MODAL
+   ═══════════════════════════════════════ */
+function openLeaveModal() { document.getElementById('leave-modal').classList.add('open'); }
+function closeLeaveModal() { document.getElementById('leave-modal').classList.remove('open'); }
+
+function clearEverything() {
+  localStorage.clear();
+  state = { name:'', realm:'', activities:[], easterEggs:false, sound:'forest', trivia_progress:{score:0, discovered:0, answered:[]}, creaturesFound:[] };
+  closeLeaveModal();
+  switchToEntry();
+  // reset form
+  document.getElementById('realm-form').reset();
+  document.getElementById('form-title').textContent = 'Enter the Realm';
+  document.getElementById('form-subtitle').textContent = 'Tell us who you are, traveller.';
+  document.getElementById('submit-label').textContent = '✦ Enter the Realm ✦';
+  showSuccessOverlay('🌫', 'Farewell…', 'Even Totoro has forgotten. Start fresh.');
+}
+
+/* ═══════════════════════════════════════
+   QUICK QUIZ POPUP
+   ═══════════════════════════════════════ */
+let qpIndex = 0;
+let qpQuestions = [];
+
+function openQuiz() {
+  qpQuestions = ALL_TRIVIA.sort(() => Math.random()-0.5).slice(0,5);
+  qpIndex = 0;
+  renderQP();
+  document.getElementById('quiz-popup').classList.add('open');
+}
+function closeQuiz() { document.getElementById('quiz-popup').classList.remove('open'); }
+
+function renderQP() {
+  if (qpIndex >= qpQuestions.length) {
+    document.getElementById('qp-question').textContent = '✨ Quiz complete!';
+    document.getElementById('qp-options').innerHTML = '';
+    document.getElementById('qp-next').style.display = 'none';
+    return;
+  }
+  const q = qpQuestions[qpIndex];
+  document.getElementById('qp-question').textContent = q.q;
+  document.getElementById('qp-feedback').textContent = '';
+  document.getElementById('qp-next').style.display = 'none';
+  const opts = document.getElementById('qp-options');
+  opts.innerHTML = '';
+  [...q.opts].sort(()=>Math.random()-0.5).forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'quiz-opt';
+    b.textContent = opt;
+    b.onclick = () => {
+      document.querySelectorAll('#qp-options .quiz-opt').forEach(x => {
+        x.disabled = true;
+        if (x.textContent === q.a) x.classList.add('correct');
+      });
+      const fb = document.getElementById('qp-feedback');
+      if (opt === q.a) { b.classList.add('correct'); fb.textContent = '✓ Correct!'; fb.className = 'quiz-feedback right'; }
+      else { b.classList.add('wrong'); fb.textContent = `✕ The answer was: ${q.a}`; fb.className = 'quiz-feedback wrong'; }
+      document.getElementById('qp-next').style.display = 'inline-block';
+    };
+    opts.appendChild(b);
+  });
+}
+
+function nextQPQuestion() {
+  qpIndex++;
+  renderQP();
+}
+
+/* ═══════════════════════════════════════
+   KONAMI CODE
+   ═══════════════════════════════════════ */
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiIdx = 0;
+
+document.addEventListener('keydown', e => {
+  if (e.key === KONAMI[konamiIdx]) {
+    konamiIdx++;
+    if (konamiIdx === KONAMI.length) {
+      konamiIdx = 0;
+      triggerKonamiEgg();
+    }
+  } else {
+    konamiIdx = 0;
+  }
+});
+
+function triggerKonamiEgg() {
+  const anim = document.getElementById('konami-anim');
+  anim.innerHTML = '';
+  const spirits = ['🌳','🖤','🌿','🌙','✨','🐾','🌸','🌊','🔥','🌬'];
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('div');
+    s.className = 'konami-spirit';
+    s.textContent = spirits[Math.floor(Math.random()*spirits.length)];
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      animation-delay:${Math.random()*1.5}s;
+      font-size:${1+Math.random()*2}rem;
+    `;
+    anim.appendChild(s);
+  }
+  document.getElementById('konami-modal').classList.add('open');
+  state.trivia_progress.discovered = Math.min(30,(state.trivia_progress.discovered||0)+3);
+  saveState(); updateProgress();
+}
+
+function closeKonami() { document.getElementById('konami-modal').classList.remove('open'); }
+
+/* ═══════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════ */
+loadState();
+
+if (isLoggedIn()) {
+  document.getElementById('page-entry').classList.remove('active');
+  document.getElementById('page-trivia').classList.add('active');
+  initTriviaPage();
+} else {
+  // Entry page setup
+  spawnFireflies('fireflies', 12);
+  typewrite(document.getElementById('realm-title-text'), 'The Ghibli Realm', 100);
+  prefillForm();
+}
 </script>
 </body>
 </html>
