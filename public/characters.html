@@ -1,211 +1,463 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icons of Ghibli</title>
-    <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
-    <link rel="stylesheet" href="characters.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Icons of Ghibli — Whispers of Ghibli</title>
+  <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="characters.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="topbar">
-    <div class="logo">Whispers of Ghibli</div>
-    <ul>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realm.html">Realms</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/sources.html">Sources</a></li>
-    </ul>
-</nav>
-
-<!-- HEADER CAROUSEL -->
-<section class="header-carousel">
-  <div class="carousel">
-    <div class="carousel-slide"><img src="one.gif" alt="slide1"></div>
-    <div class="carousel-slide"><img src="two.gif" alt="slide2"></div>
-    <div class="carousel-slide"><img src="three.gif" alt="slide3"></div>
-    <div class="carousel-slide"><img src="four.gif" alt="slide4"></div>
-  </div>
-  <h2 class="carousel-header">Icons of Ghibli</h2>
-</section>
-
+<!-- LEAVES -->
 <canvas id="leaves"></canvas>
 
+<!-- NAV — matches behind.html exactly -->
+<nav class="topbar">
+  <div class="logo">Whispers of Ghibli</div>
+  <ul id="navUl">
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html" class="active">Characters</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realm.html">Realms</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/behind.html">Sources</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero-banner">
+  <div class="carousel">
+    <div class="carousel-slide active"><img src="one.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="two.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="three.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="four.gif" alt="Ghibli scene"></div>
+  </div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Studio Ghibli</p>
+    <h1>Icons of Ghibli</h1>
+    <p class="hero-subtitle">The souls behind the stories.</p>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<!-- CONTROLS BAR -->
+<div class="controls-bar">
+  <span class="filter-label">Filter</span>
+  <div class="filter-btns">
+    <button class="filter-btn active" data-filter="all">All Characters</button>
+    <button class="filter-btn" data-filter="Protagonist">Protagonists</button>
+    <button class="filter-btn" data-filter="Mystical creature">Mystical</button>
+    <button class="filter-btn" data-filter="Sidekick">Sidekicks</button>
+    <button class="filter-btn" data-filter="Mystical figure">Mystical Figures</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search characters…" autocomplete="off">
+  </div>
+  <span class="char-count">Showing <span id="charCountNum">15</span> characters</span>
+</div>
+
 <!-- CHARACTERS GRID -->
-<section class="cards reveal" id="characters-grid">
-    <div class="card" data-name="Totoro" data-movie="My Neighbor Totoro" data-quote="Totoro… Totoro!" data-bio="A gentle forest spirit." data-likes="Nature, naps" data-dislikes="Noise" data-special="Summons Catbus" data-tag="Mystical creature">
-        <img src="Totoro1.png
-" alt="Totoro"/>
-        <h3>Totoro</h3>
+<section class="cards" id="characters-grid">
+
+  <div class="card" data-tag="Mystical creature"
+    data-name="Totoro" data-movie="My Neighbor Totoro"
+    data-quote="Totoro… Totoro!"
+    data-bio="A gentle forest spirit who watches over children and the natural world."
+    data-likes="Nature, naps" data-dislikes="Noise"
+    data-special="Summons Catbus">
+    <img src="Totoro1.png" alt="Totoro">
+    <span class="card-tag">Mystical creature</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">My Neighbor Totoro</p>
+      <p class="hover-quote">"Totoro… Totoro!"</p>
     </div>
-    <div class="card" data-name="Chihiro Ogino" data-movie="Spirited Away" data-quote="I think I can handle it." data-bio="A brave, kind-hearted girl." data-likes="Helping others" data-dislikes="Cruelty" data-special="Strong will" data-tag="Protagonist">
-        <img src="Chihiro.png" alt="Chihiro"/>
-        <h3>Chihiro Ogino</h3>
+    <div class="card-info"><h3>Totoro</h3><p class="card-meta">My Neighbor Totoro</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Chihiro Ogino" data-movie="Spirited Away"
+    data-quote="I think I can handle it."
+    data-bio="A brave, kind-hearted girl who must navigate a spirit world to save her parents."
+    data-likes="Helping others" data-dislikes="Cruelty"
+    data-special="Strong will">
+    <img src="Chihiro.png" alt="Chihiro">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Spirited Away</p>
+      <p class="hover-quote">"I think I can handle it."</p>
     </div>
-    <div class="card" data-name="Howl Jenkins Pendragon" data-movie="Howl’s Moving Castle" data-quote="A heart’s a heavy burden." data-bio="A powerful but vain wizard." data-likes="Magic, Sophie" data-dislikes="War" data-special="Shape-shifting" data-tag="Protagonist">
-        <img src="howl.png" alt="Howl"/>
-        <h3>Howl Jenkins Pendragon</h3>
+    <div class="card-info"><h3>Chihiro Ogino</h3><p class="card-meta">Spirited Away</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Howl Jenkins Pendragon" data-movie="Howl's Moving Castle"
+    data-quote="A heart's a heavy burden."
+    data-bio="A powerful but vain wizard who hides vulnerability behind beauty and arrogance."
+    data-likes="Magic, Sophie" data-dislikes="War"
+    data-special="Shape-shifting">
+    <img src="howl.png" alt="Howl">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Howl's Moving Castle</p>
+      <p class="hover-quote">"A heart's a heavy burden."</p>
     </div>
-    <div class="card" data-name="Sophie Hatter" data-movie="Howl’s Moving Castle" data-quote="I’m not afraid anymore." data-bio="A humble hat maker." data-likes="Cleaning, kindness" data-dislikes="Vanity" data-special="Curse resistance" data-tag="Protagonist">
-        <img src="Sophie.png" alt="Sophie"/>
-        <h3>Sophie Hatter</h3>
+    <div class="card-info"><h3>Howl Jenkins Pendragon</h3><p class="card-meta">Howl's Moving Castle</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Sophie Hatter" data-movie="Howl's Moving Castle"
+    data-quote="I'm not afraid anymore."
+    data-bio="A humble hat maker whose inner strength reveals itself after she's cursed into old age."
+    data-likes="Cleaning, kindness" data-dislikes="Vanity"
+    data-special="Curse resistance">
+    <img src="Sophie.png" alt="Sophie">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Howl's Moving Castle</p>
+      <p class="hover-quote">"I'm not afraid anymore."</p>
     </div>
-    <div class="card" data-name="Princess Nausicaä" data-movie="Nausicaä of the Valley of the Wind" data-quote="We must learn to live with nature." data-bio="A compassionate leader." data-likes="Exploration" data-dislikes="War" data-special="Glider pilot" data-tag="Protagonist">
-        <img src="Nausicaä.png" alt="Nausicaä"/>
-        <h3>Princess Nausicaä</h3>
+    <div class="card-info"><h3>Sophie Hatter</h3><p class="card-meta">Howl's Moving Castle</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Princess Nausicaä" data-movie="Nausicaä of the Valley of the Wind"
+    data-quote="We must learn to live with nature."
+    data-bio="A compassionate leader who seeks harmony between humanity and the toxic jungle."
+    data-likes="Exploration" data-dislikes="War"
+    data-special="Glider pilot">
+    <img src="Nausicaä.png" alt="Nausicaä">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Nausicaä of the Valley of the Wind</p>
+      <p class="hover-quote">"We must learn to live with nature."</p>
     </div>
-    <div class="card" data-name="Kiki" data-movie="Kiki’s Delivery Service" data-quote="I think something’s wrong with me." data-bio="A young witch in training." data-likes="Flying" data-dislikes="Self-doubt" data-special="Broom flight" data-tag="Protagonist">
-        <img src="Kiki1.png" alt="Kiki"/>
-        <h3>Kiki</h3>
+    <div class="card-info"><h3>Princess Nausicaä</h3><p class="card-meta">Valley of the Wind</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Kiki" data-movie="Kiki's Delivery Service"
+    data-quote="I think something's wrong with me."
+    data-bio="A young witch in training who must find her own path and confidence in a new city."
+    data-likes="Flying" data-dislikes="Self-doubt"
+    data-special="Broom flight">
+    <img src="Kiki1.png" alt="Kiki">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Kiki's Delivery Service</p>
+      <p class="hover-quote">"I think something's wrong with me."</p>
     </div>
-    <div class="card" data-name="Jiji" data-movie="Kiki’s Delivery Service" data-quote="Meow?" data-bio="Kiki’s sarcastic cat." data-likes="Comfort" data-dislikes="Danger" data-special="Speech (to Kiki)" data-tag="Sidekick">
-        <img src="Jiji.png" alt="Jiji"/>
-        <h3>Jiji</h3>
+    <div class="card-info"><h3>Kiki</h3><p class="card-meta">Kiki's Delivery Service</p></div>
+  </div>
+
+  <div class="card" data-tag="Sidekick"
+    data-name="Jiji" data-movie="Kiki's Delivery Service"
+    data-quote="Meow?"
+    data-bio="Kiki's sarcastic but loyal black cat, her constant companion through every adventure."
+    data-likes="Comfort" data-dislikes="Danger"
+    data-special="Speech (to Kiki)">
+    <img src="Jiji.png" alt="Jiji">
+    <span class="card-tag">Sidekick</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Kiki's Delivery Service</p>
+      <p class="hover-quote">"Meow?"</p>
     </div>
-    <div class="card" data-name="San" data-movie="Princess Mononoke" data-quote="I hate humans." data-bio="A human raised by wolves." data-likes="Forest" data-dislikes="Industry" data-special="Wolf combat" data-tag="Protagonist">
-        <img src="Mononoke.png" alt="San"/>
-        <h3>San</h3>
+    <div class="card-info"><h3>Jiji</h3><p class="card-meta">Kiki's Delivery Service</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="San" data-movie="Princess Mononoke"
+    data-quote="I hate humans."
+    data-bio="A human raised by wolves who fights fiercely for the survival of the Great Forest."
+    data-likes="Forest" data-dislikes="Industry"
+    data-special="Wolf combat">
+    <img src="Mononoke.png" alt="San">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Princess Mononoke</p>
+      <p class="hover-quote">"I hate humans."</p>
     </div>
-    <div class="card" data-name="Ashitaka" data-movie="Princess Mononoke" data-quote="See with eyes unclouded." data-bio="A cursed prince seeking peace." data-likes="Balance" data-dislikes="Hatred" data-special="Enhanced strength" data-tag="Protagonist">
-        <img src="Ashitaka.png" alt="Ashitaka"/>
-        <h3>Ashitaka</h3>
+    <div class="card-info"><h3>San</h3><p class="card-meta">Princess Mononoke</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Ashitaka" data-movie="Princess Mononoke"
+    data-quote="See with eyes unclouded."
+    data-bio="A cursed prince who seeks balance between the warring human and spirit worlds."
+    data-likes="Balance" data-dislikes="Hatred"
+    data-special="Enhanced strength">
+    <img src="Ashitaka.png" alt="Ashitaka">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Princess Mononoke</p>
+      <p class="hover-quote">"See with eyes unclouded."</p>
     </div>
-    <div class="card" data-name="No-Face" data-movie="Spirited Away" data-quote="……" data-bio="A lonely spirit." data-likes="Companionship" data-dislikes="Greed" data-special="Absorption" data-tag="Mystical creature">
-        <img src="No-Face.png" alt="No-Face"/>
-        <h3>No-Face</h3>
+    <div class="card-info"><h3>Ashitaka</h3><p class="card-meta">Princess Mononoke</p></div>
+  </div>
+
+  <div class="card" data-tag="Mystical creature"
+    data-name="No-Face" data-movie="Spirited Away"
+    data-quote="……"
+    data-bio="A lonely spirit who absorbs the greed of those around him — a mirror of human desire."
+    data-likes="Companionship" data-dislikes="Greed"
+    data-special="Absorption">
+    <img src="No-Face.png" alt="No-Face">
+    <span class="card-tag">Mystical creature</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Spirited Away</p>
+      <p class="hover-quote">"……"</p>
     </div>
-    <div class="card" data-name="Ponyo" data-movie="Ponyo" data-quote="Ponyo loves Sosuke!" data-bio="A magical fish-girl." data-likes="Ham" data-dislikes="Being alone" data-special="Water magic" data-tag="Protagonist">
-        <img src="Ponyo1.png" alt="Ponyo"/>
-        <h3>Ponyo</h3>
+    <div class="card-info"><h3>No-Face</h3><p class="card-meta">Spirited Away</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Ponyo" data-movie="Ponyo"
+    data-quote="Ponyo loves Sosuke!"
+    data-bio="A magical fish-girl whose love for a human boy upends the balance of the ocean."
+    data-likes="Ham" data-dislikes="Being alone"
+    data-special="Water magic">
+    <img src="Ponyo1.png" alt="Ponyo">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Ponyo</p>
+      <p class="hover-quote">"Ponyo loves Sosuke!"</p>
     </div>
-    <div class="card" data-name="Arrietty" data-movie="Arrietty" data-quote="We’re meant to live secretly." data-bio="A tiny borrower." data-likes="Exploration" data-dislikes="Humans seeing her" data-special="Stealth" data-tag="Protagonist">
-        <img src="Arrietty1.png" alt="Arrietty"/>
-        <h3>Arrietty</h3>
+    <div class="card-info"><h3>Ponyo</h3><p class="card-meta">Ponyo</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Arrietty" data-movie="Arrietty"
+    data-quote="We're meant to live secretly."
+    data-bio="A tiny borrower who defies her family's rule of secrecy when she befriends a human boy."
+    data-likes="Exploration" data-dislikes="Humans seeing her"
+    data-special="Stealth">
+    <img src="Arrietty1.png" alt="Arrietty">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Arrietty</p>
+      <p class="hover-quote">"We're meant to live secretly."</p>
     </div>
-    <div class="card" data-name="Baron Humbert von Gikkingen" data-movie="Whisper of the Heart" data-quote="You let me live." data-bio="A charming cat statue." data-likes="Adventure" data-dislikes="Being forgotten" data-special="Symbolic guide" data-tag="Mystical figure">
-        <img src="Baron.png" alt="Baron"/>
-        <h3>Baron Humbert von Gikkingen</h3>
+    <div class="card-info"><h3>Arrietty</h3><p class="card-meta">Arrietty</p></div>
+  </div>
+
+  <div class="card" data-tag="Mystical figure"
+    data-name="Baron Humbert von Gikkingen" data-movie="Whisper of the Heart"
+    data-quote="You let me live."
+    data-bio="A charming cat figurine who comes to life as a guide through the realm of imagination."
+    data-likes="Adventure" data-dislikes="Being forgotten"
+    data-special="Symbolic guide">
+    <img src="Baron.png" alt="Baron">
+    <span class="card-tag">Mystical figure</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Whisper of the Heart</p>
+      <p class="hover-quote">"You let me live."</p>
     </div>
-    <div class="card" data-name="Porco Rosso" data-movie="Porco Rosso" data-quote="I’d rather be a pig than a fascist." data-bio="A pig pilot." data-likes="Flying" data-dislikes="Politics" data-special="Ace pilot" data-tag="Protagonist">
-        <img src="Porco1.png" alt="Porco"/>
-        <h3>Porco Rosso</h3>
+    <div class="card-info"><h3>Baron Humbert von Gikkingen</h3><p class="card-meta">Whisper of the Heart</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Porco Rosso" data-movie="Porco Rosso"
+    data-quote="I'd rather be a pig than a fascist."
+    data-bio="A World War I ace cursed to live as a pig, finding meaning through flight and solitude."
+    data-likes="Flying" data-dislikes="Politics"
+    data-special="Ace pilot">
+    <img src="Porco1.png" alt="Porco Rosso">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">Porco Rosso</p>
+      <p class="hover-quote">"I'd rather be a pig than a fascist."</p>
     </div>
-    <div class="card" data-name="Mahito" data-movie="The Boy and the Heron" data-quote="I choose my own world." data-bio="A grieving boy." data-likes="Drawing" data-dislikes="Loss" data-special="Spiritual journey" data-tag="Protagonist">
-        <img src="Mahito.png" alt="Mahito"/>
-        <h3>Mahito</h3>
+    <div class="card-info"><h3>Porco Rosso</h3><p class="card-meta">Porco Rosso</p></div>
+  </div>
+
+  <div class="card" data-tag="Protagonist"
+    data-name="Mahito" data-movie="The Boy and the Heron"
+    data-quote="I choose my own world."
+    data-bio="A grieving boy who embarks on a surreal journey through a world shaped by loss and legacy."
+    data-likes="Drawing" data-dislikes="Loss"
+    data-special="Spiritual journey">
+    <img src="Mahito.png" alt="Mahito">
+    <span class="card-tag">Protagonist</span>
+    <div class="card-hover-overlay">
+      <p class="hover-film">The Boy and the Heron</p>
+      <p class="hover-quote">"I choose my own world."</p>
     </div>
+    <div class="card-info"><h3>Mahito</h3><p class="card-meta">The Boy and the Heron</p></div>
+  </div>
+
+  <div class="no-results" id="noResults">No characters match your search.</div>
 </section>
 
 <!-- CHARACTER OVERLAY -->
-<div id="character-overlay">
-    <div class="overlay-content">
-        <span id="close-character-overlay">&times;</span>
+<div id="character-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-name">
+  <div class="overlay-content">
+    <button id="close-character-overlay" aria-label="Close">&times;</button>
+    <div class="overlay-grid">
+      <div class="overlay-portrait">
+        <img id="overlay-img" src="" alt="">
+      </div>
+      <div class="overlay-body">
+        <p class="overlay-eyebrow">Studio Ghibli Character</p>
         <h2 id="overlay-name"></h2>
-        <p><strong>Movie:</strong> <span id="overlay-movie"></span></p>
-        <p><strong>Quote:</strong> <span id="overlay-quote"></span></p>
-        <p id="overlay-bio"></p>
-        <p><strong>Likes:</strong> <span id="overlay-likes"></span></p>
-        <p><strong>Dislikes:</strong> <span id="overlay-dislikes"></span></p>
-        <p><strong>Special Features:</strong> <span id="overlay-special"></span></p>
-        <p><strong>Tag:</strong> <span id="overlay-tag"></span></p>
+        <div class="overlay-quote-block">
+          <p id="overlay-quote"></p>
+        </div>
+        <div class="overlay-divider"></div>
+        <p id="overlay-bio" style="font-size:0.62rem; color:var(--text-dim); line-height:1.8;"></p>
+        <div class="overlay-data">
+          <div class="overlay-row"><strong>Film</strong><span id="overlay-movie"></span></div>
+          <div class="overlay-row"><strong>Likes</strong><span id="overlay-likes"></span></div>
+          <div class="overlay-row"><strong>Dislikes</strong><span id="overlay-dislikes"></span></div>
+          <div class="overlay-row"><strong>Special</strong><span id="overlay-special"></span></div>
+        </div>
+        <div>
+          <div class="overlay-tag-wrap" id="overlay-tag-wrap"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-    <!-- FOOTER -->
+
+<!-- FOOTER -->
 <footer class="site-footer">
-    <div class="footer-content">
-        <div class="sources">
-            <h4>Sources / Credits</h4>
-            <ul>
-                <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. Retrieved from <a href="https://www.ghibli.jp" target="_blank">https://www.ghibli.jp</a></li>
-                <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. Retrieved from <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">https://ghibli.fandom.com/wiki/Ghibli_Wiki</a></li>
-            </ul>
-        </div>
-        <div class="repo-link">
-            <h4>Repository</h4>
-            <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
-        </div>
+  <div class="footer-content">
+    <div class="sources">
+      <h4>Sources / Credits</h4>
+      <ul>
+        <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. <a href="https://www.ghibli.jp" target="_blank">ghibli.jp</a></li>
+        <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">ghibli.fandom.com</a></li>
+      </ul>
     </div>
-    <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
+    <div class="repo-link">
+      <h4>Repository</h4>
+      <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
 </footer>
 
-
 <script>
-    // Rotate carousel images on a fixed interval.
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
-    function showSlide(index){ slides.forEach((s,i)=> s.style.display = i===index ? 'block':'none'); }
-    showSlide(currentIndex);
-    setInterval(()=>{ currentIndex=(currentIndex+1)%slides.length; showSlide(currentIndex); }, 4000);
+/* NAV */
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navUl').classList.toggle('open');
+});
 
-    // Draw and animate decorative falling leaves on the background canvas.
-    const canvas = document.getElementById('leaves');
-    const ctx = canvas.getContext('2d');
-    let w,h;
-    function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
-    window.addEventListener('resize',resize);
-    resize();
-    const leaves = Array.from({length:30},()=>({x:Math.random()*w, y:Math.random()*h, s:Math.random()*2+1, r:Math.random()*Math.PI}));
-    function animateLeaves(){
-        ctx.clearRect(0,0,w,h);
-        leaves.forEach(l=>{
-            l.y+=l.s*0.5; l.x+=Math.sin(l.y*0.01); l.r+=0.01;
-            if(l.y>h) l.y=-20;
-            ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.r);
-            ctx.fillStyle='rgba(120,150,120,0.6)';
-            ctx.beginPath(); ctx.ellipse(0,0,6,3,0,0,Math.PI*2); ctx.fill();
-            ctx.restore();
-        });
-        requestAnimationFrame(animateLeaves);
-    }
-    animateLeaves();
-
- document.addEventListener('DOMContentLoaded', () => {
-    const moviesGrid = document.getElementById('movies-grid');
-    moviesGrid.classList.add('active');
-  });
-  
-    /*// Reveal sections when they enter the viewport.
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => { entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('active'); }) },{threshold:0.2});
-    reveals.forEach(r=>observer.observe(r));*/
-
-    // Cache overlay elements once, then populate them from card data attributes.
-    const overlay = document.getElementById('character-overlay');
-    const overlayName = document.getElementById('overlay-name');
-    const overlayMovie = document.getElementById('overlay-movie');
-    const overlayQuote = document.getElementById('overlay-quote');
-    const overlayBio = document.getElementById('overlay-bio');
-    const overlayLikes = document.getElementById('overlay-likes');
-    const overlayDislikes = document.getElementById('overlay-dislikes');
-    const overlaySpecial = document.getElementById('overlay-special');
-    const overlayTag = document.getElementById('overlay-tag');
-    const closeOverlay = document.getElementById('close-character-overlay');
-
-    // Open character details when a card is clicked.
-    document.querySelectorAll('.card').forEach(card=>{
-        card.addEventListener('click', ()=>{
-            try{
-                overlay.style.display='flex';
-                overlayName.textContent=card.dataset.name||'Unknown';
-                overlayMovie.textContent=card.dataset.movie||'Unknown';
-                overlayQuote.textContent=card.dataset.quote||'N/A';
-                overlayBio.textContent=card.dataset.bio||'N/A';
-                overlayLikes.textContent=card.dataset.likes||'N/A';
-                overlayDislikes.textContent=card.dataset.dislikes||'N/A';
-                overlaySpecial.textContent=card.dataset.special||'N/A';
-                overlayTag.textContent=card.dataset.tag||'N/A';
-            }catch(e){console.error('Error displaying character overlay', e);}
-        });
+/* LEAVES */
+(function() {
+  const canvas = document.getElementById('leaves');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+  const leaves = Array.from({length: 25}, () => ({ x: Math.random()*w, y: Math.random()*h, s: Math.random()*2+0.5, r: Math.random()*Math.PI }));
+  function animate() {
+    ctx.clearRect(0,0,w,h);
+    leaves.forEach(l => {
+      l.y += l.s*0.4; l.x += Math.sin(l.y*0.01); l.r += 0.008;
+      if (l.y > h) l.y = -20;
+      ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.r);
+      ctx.fillStyle = 'rgba(120,150,120,0.5)';
+      ctx.beginPath(); ctx.ellipse(0,0,6,3,0,0,Math.PI*2); ctx.fill();
+      ctx.restore();
     });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 
-    // Allow closing the overlay with click or Escape key.
-    closeOverlay.addEventListener('click',()=>{ overlay.style.display='none'; });
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ overlay.style.display='none'; } });
+/* CAROUSEL */
+(function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsEl = document.getElementById('carouselDots');
+  let cur = 0;
+  slides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i===0?' active':'');
+    d.addEventListener('click', () => go(i));
+    dotsEl.appendChild(d);
+  });
+  function go(i) {
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+  }
+  setInterval(() => go((cur+1) % slides.length), 4200);
+})();
+
+/* FILTER + SEARCH */
+const allCards = document.querySelectorAll('.card[data-name]');
+const noResults = document.getElementById('noResults');
+
+function applyFilters() {
+  const activeBtn = document.querySelector('.filter-btn.active');
+  const tagFilter = activeBtn ? activeBtn.dataset.filter : 'all';
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  let visible = 0;
+  allCards.forEach(card => {
+    const matchTag  = tagFilter === 'all' || card.dataset.tag === tagFilter;
+    const matchQ    = !query ||
+      card.dataset.name.toLowerCase().includes(query) ||
+      card.dataset.movie.toLowerCase().includes(query);
+    const show = matchTag && matchQ;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('charCountNum').textContent = visible;
+  noResults.classList.toggle('visible', visible === 0);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+/* OVERLAY */
+const overlay = document.getElementById('character-overlay');
+
+function openOverlay(card) {
+  document.getElementById('overlay-name').textContent    = card.dataset.name || '—';
+  document.getElementById('overlay-movie').textContent   = card.dataset.movie || '—';
+  document.getElementById('overlay-quote').textContent   = card.dataset.quote || '—';
+  document.getElementById('overlay-bio').textContent     = card.dataset.bio || '—';
+  document.getElementById('overlay-likes').textContent   = card.dataset.likes || '—';
+  document.getElementById('overlay-dislikes').textContent = card.dataset.dislikes || '—';
+  document.getElementById('overlay-special').textContent = card.dataset.special || '—';
+
+  const img = document.getElementById('overlay-img');
+  img.src = card.querySelector('img').src;
+  img.alt = card.dataset.name;
+
+  const tagWrap = document.getElementById('overlay-tag-wrap');
+  tagWrap.innerHTML = '';
+  if (card.dataset.tag) {
+    const pill = document.createElement('span');
+    pill.className = 'overlay-tag-pill';
+    pill.textContent = card.dataset.tag;
+    tagWrap.appendChild(pill);
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+allCards.forEach(card => card.addEventListener('click', () => openOverlay(card)));
+document.getElementById('close-character-overlay').addEventListener('click', closeOverlay);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
 </script>
 </body>
 </html>

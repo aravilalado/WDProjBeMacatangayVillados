@@ -3,215 +3,377 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Journey Through the Films</title>
+  <title>A Journey Through the Films — Whispers of Ghibli</title>
   <link rel="icon" href="https://github.com/aravilalado/WDProjBeMacatangayVillados/raw/main/assets/totoro%20logo.webp">
-  <link rel="stylesheet" href="movies.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="movies.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="topbar">
-    <div class="logo">Whispers of Ghibli</div>
-    <ul>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html">Movies</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realm.html">Realms</a></li>
-    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/behind.html">Sources</a></li>
-    </ul>
-</nav>
-
-<!-- HEADER CAROUSEL -->
-<section class="header-carousel">
-  <div class="carousel">
-    <div class="carousel-slide"><img src="one.gif" alt="slide1"></div>
-    <div class="carousel-slide"><img src="two.gif" alt="slide2"></div>
-    <div class="carousel-slide"><img src="three.gif" alt="slide3"></div>
-    <div class="carousel-slide"><img src="four.gif" alt="slide4"></div>
-  </div>
-  <h2 class="carousel-header">A Journey Through the Films</h2>
-</section>
 
 <!-- LEAVES -->
 <canvas id="leaves"></canvas>
 
-<!-- MOVIES GRID -->
-<section class="cards reveal" id="movies-grid">
+<!-- NAV — matches behind.html exactly -->
+<nav class="topbar">
+  <div class="logo">Whispers of Ghibli</div>
+  <ul id="navUl">
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/homepage.html">Home</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/movies.html" class="active">Movies</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/characters.html">Characters</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/about.html">The Studio</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/realm.html">Realms</a></li>
+    <li><a href="https://aravilalado.github.io/WDProjBeMacatangayVillados/public/behind.html">Sources</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+</nav>
 
-<!-- Movie Cards for all 24 Ghibli movies -->
-<div class="card" data-title="Nausicaä of the Valley of the Wind" data-year="1984" data-director="Hayao Miyazaki" data-short="A brave princess fights to save her world from ecological collapse." data-long="In a post-apocalyptic future, Princess Nausicaä seeks harmony between humans and nature as toxic jungles spread across the land. Through empathy and courage, she challenges war-driven nations and uncovers nature’s fragile balance." data-characters="Nausicaä, Lord Yupa, Ohmu"><img src="nausica.png" alt="Nausicaä poster"/><h3>Nausicaä of the Valley of the Wind</h3></div>
-
-<div class="card" data-title="Castle in the Sky" data-year="1986" data-director="Hayao Miyazaki" data-short="Two children search for a legendary floating city." data-long="Sheeta and Pazu are pursued by pirates and government agents while searching for Laputa, a mythical city in the sky. The film explores technology, power, and the innocence of youth." data-characters="Sheeta, Pazu, Muska, Dola"><img src="castle.png" alt="Castle poster"/><h3>Castle in the Sky</h3></div>
-
-<div class="card" data-title="Grave of the Fireflies" data-year="1988" data-director="Isao Takahata" data-short="Siblings struggle to survive during wartime Japan." data-long="Set during World War II, the story follows Seita and Setsuko as they endure hunger, loss, and loneliness. It is a heartbreaking portrayal of war’s impact on innocent lives." data-characters="Seita, Setsuko"><img src="grave.png" alt="Grave poster"/><h3>Grave of the Fireflies</h3></div>
-
-<div class="card" data-title="My Neighbor Totoro" data-year="1988" data-director="Hayao Miyazaki" data-short="Two sisters befriend gentle forest spirits." data-long="Satsuki and Mei move to the countryside and encounter Totoro and other magical creatures. The film celebrates childhood wonder, family, and nature." data-characters="Totoro, Satsuki, Mei, Catbus"><img src="totoro.png" alt="Totoro poster"/><h3>My Neighbor Totoro</h3></div>
-
-<div class="card" data-title="Kiki’s Delivery Service" data-year="1989" data-director="Hayao Miyazaki" data-short="A young witch learns independence." data-long="Thirteen-year-old Kiki starts a delivery business in a seaside town as part of her witch training. She faces self-doubt and burnout while learning confidence and maturity." data-characters="Kiki, Jiji, Tombo"><img src="kiki.png" alt="Kiki poster"/><h3>Kiki’s Delivery Service</h3></div>
-
-<div class="card" data-title="Only Yesterday" data-year="1991" data-director="Isao Takahata" data-short="A woman reflects on her childhood." data-long="Taeko revisits memories of growing up while spending time in the countryside. The film explores nostalgia, personal growth, and choices." data-characters="Taeko, Toshio"><img src="only.png" alt="Only Yesterday poster"/><h3>Only Yesterday</h3></div>
-
-<div class="card" data-title="Porco Rosso" data-year="1992" data-director="Hayao Miyazaki" data-short="A cursed pilot lives as a pig." data-long="World War I ace Porco Rosso battles air pirates while grappling with guilt and love. Set in the Adriatic Sea, it mixes adventure with melancholy." data-characters="Porco Rosso, Fio, Gina"><img src="porco.png" alt="Porco poster"/><h3>Porco Rosso</h3></div>
-
-<div class="card" data-title="Ocean Waves" data-year="1993" data-director="Tomomi Mochizuki" data-short="A quiet teenage love triangle." data-long="Taku recalls his complicated friendship and feelings involving Rikako and Yutaka during high school. A realistic, understated coming-of-age story." data-characters="Taku, Rikako, Yutaka"><img src="ocean.png" alt="Ocean Waves poster"/><h3>Ocean Waves</h3></div>
-
-<div class="card" data-title="Pom Poko" data-year="1994" data-director="Isao Takahata" data-short="Raccoon dogs defend their forest home." data-long="Tanuki use magical shapeshifting to stop urban development. The film blends comedy with environmental commentary." data-characters="The Tanuki clan"><img src="pom.png" alt="Pom Poko poster"/><h3>Pom Poko</h3></div>
-
-<div class="card" data-title="Whisper of the Heart" data-year="1995" data-director="Yoshifumi Kondō" data-short="A girl discovers her creative voice." data-long="Shizuku befriends a boy who inspires her writing dreams. It’s a gentle story about ambition, love, and self-discovery." data-characters="Shizuku, Seiji, Baron"><img src="whisper.png" alt="Whisper poster"/><h3>Whisper of the Heart</h3></div>
-
-<div class="card" data-title="Princess Mononoke" data-year="1997" data-director="Hayao Miyazaki" data-short="Humans and gods clash over nature." data-long="Ashitaka is caught between industrial humans and forest spirits. The film presents moral complexity in environmental conflict." data-characters="San, Ashitaka, Lady Eboshi"><img src="mononole.png" alt="Mononoke poster"/><h3>Princess Mononoke</h3></div>
-
-<div class="card" data-title="My Neighbors the Yamadas" data-year="1999" data-director="Isao Takahata" data-short="Everyday life of a quirky family." data-long="Told in short vignettes, the Yamadas’ story humorously captures ordinary family moments." data-characters="Takashi, Matsuko, Noboru"><img src="yamadas.png" alt="Yamadas poster"/><h3>My Neighbors the Yamadas</h3></div>
-
-<div class="card" data-title="Spirited Away" data-year="2001" data-director="Hayao Miyazaki" data-short="A girl trapped in a spirit world." data-long="Chihiro must work in a bathhouse for spirits to save her parents. A richly imaginative tale about courage and identity." data-characters="Chihiro, Haku, No-Face, Yubaba"><img src="spirited.png" alt="Spirited poster"/><h3>Spirited Away</h3></div>
-
-<div class="card" data-title="The Cat Returns" data-year="2002" data-director="Hiroyuki Morita" data-short="A girl visits the Cat Kingdom." data-long="Haru is drawn into a magical feline world after saving a cat prince. Lighthearted and whimsical." data-characters="Haru, Baron, Muta"><img src="cat.png" alt="Cat Returns poster"/><h3>The Cat Returns</h3></div>
-
-<div class="card" data-title="Howl’s Moving Castle" data-year="2004" data-director="Hayao Miyazaki" data-short="A cursed girl meets a mysterious wizard." data-long="Sophie is transformed into an old woman and joins Howl’s walking castle. Themes include love, war, and self-worth." data-characters="Howl, Sophie, Calcifer"><img src="howls.png" alt="Howl poster"/><h3>Howl’s Moving Castle</h3></div>
-
-<div class="card" data-title="Tales from Earthsea" data-year="2006" data-director="Gorō Miyazaki" data-short="A prince confronts darkness." data-long="Based on Ursula K. Le Guin’s novels, the film follows Arren’s journey toward balance and redemption." data-characters="Arren, Sparrowhawk, Therru"><img src="tales.png" alt="Earthsea poster"/><h3>Tales from Earthsea</h3></div>
-
-<div class="card" data-title="Ponyo" data-year="2008" data-director="Hayao Miyazaki" data-short="A magical fish wants to be human." data-long="Ponyo befriends a boy named Sosuke, disrupting nature’s balance. A colorful tale of childhood love." data-characters="Ponyo, Sosuke, Fujimoto"><img src="ponyo.png" alt="Ponyo poster"/><h3>Ponyo</h3></div>
-
-<div class="card" data-title="Arrietty" data-year="2010" data-director="Hiromasa Yonebayashi" data-short="Tiny people live unseen by humans." data-long="Arrietty befriends a human boy, risking her family’s secret existence." data-characters="Arrietty, Sho"><img src="arrietty.png" alt="Arrietty poster"/><h3>Arrietty</h3></div>
-
-<div class="card" data-title="From Up on Poppy Hill" data-year="2011" data-director="Gorō Miyazaki" data-short="Teenagers save their school clubhouse." data-long="Set in 1960s Japan, the story blends young love with cultural preservation." data-characters="Umi, Shun"><img src="from.png" alt="Poppy Hill poster"/><h3>From Up on Poppy Hill</h3></div>
-
-<div class="card" data-title="The Wind Rises" data-year="2013" data-director="Hayao Miyazaki" data-short="The life of an airplane designer." data-long="Jirō Horikoshi pursues beauty in aircraft design amid war and loss." data-characters="Jirō, Naoko"><img src="wind.png" alt="Wind Rises poster"/><h3>The Wind Rises</h3></div>
-
-<div class="card" data-title="The Tale of the Princess Kaguya" data-year="2013" data-director="Isao Takahata" data-short="A moon princess raised on Earth." data-long="Rendered in a painterly style, Kaguya’s story reflects freedom and sorrow." data-characters="Kaguya, Sutemaru"><img src="kaguya.png" alt="Princess Kaguya poster"/><h3>The Tale of the Princess Kaguya</h3></div>
-
-<div class="card" data-title="When Marnie Was There" data-year="2014" data-director="Hiromasa Yonebayashi" data-short="A girl meets a mysterious friend." data-long="Anna’s friendship with Marnie helps her confront loneliness and identity." data-characters="Anna, Marnie"><img src="marnie.png" alt="Marnie poster"/><h3>When Marnie Was There</h3></div>
-
-<div class="card" data-title="Earwig and the Witch" data-year="2020" data-director="Gorō Miyazaki" data-short="A clever girl raised by witches." data-long="Ghibli’s first full 3D CGI film follows Earwig’s life in a magical house." data-characters="Earwig, Bella Yaga"><img src="earwig.png" alt="Earwig poster"/><h3>Earwig and the Witch</h3></div>
-
-<div class="card" data-title="The Boy and the Heron" data-year="2023" data-director="Hayao Miyazaki" data-short="A boy enters a surreal spirit realm." data-long="Mahito journeys through a dreamlike world shaped by grief, imagination, and legacy." data-characters="Mahito, the Heron"><img src="boy.png" alt="Boy and Heron poster"/><h3>The Boy and the Heron</h3></div>
-
+<!-- HERO BANNER -->
+<section class="hero-banner">
+  <div class="carousel">
+    <div class="carousel-slide active"><img src="one.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="two.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="three.gif" alt="Ghibli scene"></div>
+    <div class="carousel-slide"><img src="four.gif" alt="Ghibli scene"></div>
+  </div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Studio Ghibli</p>
+    <h1>A Journey Through the Films</h1>
+    <p class="hero-subtitle">24 worlds. Infinite whispers.</p>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
-<!-- EXPANDED MOVIE VIEW -->
-<div id="movie-overlay">
+<!-- CONTROLS BAR -->
+<div class="controls-bar">
+  <span class="filter-label">Filter</span>
+  <div class="filter-btns">
+    <button class="filter-btn active" data-filter="all">All Films</button>
+    <button class="filter-btn" data-filter="miyazaki">Hayao Miyazaki</button>
+    <button class="filter-btn" data-filter="takahata">Isao Takahata</button>
+    <button class="filter-btn" data-filter="other">Other Directors</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search films…" autocomplete="off">
+  </div>
+  <span class="film-count">Showing <span id="filmCountNum">24</span> films</span>
+</div>
+
+<!-- MOVIES GRID -->
+<section class="cards" id="movies-grid">
+
+  <div class="card" data-group="miyazaki" data-title="Nausicaä of the Valley of the Wind" data-year="1984" data-director="Hayao Miyazaki" data-short="A brave princess fights to save her world from ecological collapse." data-long="In a post-apocalyptic future, Princess Nausicaä seeks harmony between humans and nature as toxic jungles spread across the land. Through empathy and courage, she challenges war-driven nations and uncovers nature's fragile balance." data-characters="Nausicaä, Lord Yupa, Ohmu">
+    <img src="nausica.png" alt="Nausicaä of the Valley of the Wind">
+    <div class="card-hover-overlay"><p>A brave princess fights to save her world from ecological collapse.</p></div>
+    <div class="card-info"><h3>Nausicaä of the Valley of the Wind</h3><p class="card-meta">1984 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Castle in the Sky" data-year="1986" data-director="Hayao Miyazaki" data-short="Two children search for a legendary floating city." data-long="Sheeta and Pazu are pursued by pirates and government agents while searching for Laputa, a mythical city in the sky. The film explores technology, power, and the innocence of youth." data-characters="Sheeta, Pazu, Muska, Dola">
+    <img src="castle.png" alt="Castle in the Sky">
+    <div class="card-hover-overlay"><p>Two children search for a legendary floating city.</p></div>
+    <div class="card-info"><h3>Castle in the Sky</h3><p class="card-meta">1986 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="takahata" data-title="Grave of the Fireflies" data-year="1988" data-director="Isao Takahata" data-short="Siblings struggle to survive during wartime Japan." data-long="Set during World War II, the story follows Seita and Setsuko as they endure hunger, loss, and loneliness. It is a heartbreaking portrayal of war's impact on innocent lives." data-characters="Seita, Setsuko">
+    <img src="grave.png" alt="Grave of the Fireflies">
+    <div class="card-hover-overlay"><p>Siblings struggle to survive during wartime Japan.</p></div>
+    <div class="card-info"><h3>Grave of the Fireflies</h3><p class="card-meta">1988 · Isao Takahata</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="My Neighbor Totoro" data-year="1988" data-director="Hayao Miyazaki" data-short="Two sisters befriend gentle forest spirits." data-long="Satsuki and Mei move to the countryside and encounter Totoro and other magical creatures. The film celebrates childhood wonder, family, and nature." data-characters="Totoro, Satsuki, Mei, Catbus">
+    <img src="totoro.png" alt="My Neighbor Totoro">
+    <div class="card-hover-overlay"><p>Two sisters befriend gentle forest spirits.</p></div>
+    <div class="card-info"><h3>My Neighbor Totoro</h3><p class="card-meta">1988 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Kiki's Delivery Service" data-year="1989" data-director="Hayao Miyazaki" data-short="A young witch learns independence." data-long="Thirteen-year-old Kiki starts a delivery business in a seaside town as part of her witch training. She faces self-doubt and burnout while learning confidence and maturity." data-characters="Kiki, Jiji, Tombo">
+    <img src="kiki.png" alt="Kiki's Delivery Service">
+    <div class="card-hover-overlay"><p>A young witch learns independence.</p></div>
+    <div class="card-info"><h3>Kiki's Delivery Service</h3><p class="card-meta">1989 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="takahata" data-title="Only Yesterday" data-year="1991" data-director="Isao Takahata" data-short="A woman reflects on her childhood." data-long="Taeko revisits memories of growing up while spending time in the countryside. The film explores nostalgia, personal growth, and choices." data-characters="Taeko, Toshio">
+    <img src="only.png" alt="Only Yesterday">
+    <div class="card-hover-overlay"><p>A woman reflects on her childhood.</p></div>
+    <div class="card-info"><h3>Only Yesterday</h3><p class="card-meta">1991 · Isao Takahata</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Porco Rosso" data-year="1992" data-director="Hayao Miyazaki" data-short="A cursed pilot lives as a pig." data-long="World War I ace Porco Rosso battles air pirates while grappling with guilt and love. Set in the Adriatic Sea, it mixes adventure with melancholy." data-characters="Porco Rosso, Fio, Gina">
+    <img src="porco.png" alt="Porco Rosso">
+    <div class="card-hover-overlay"><p>A cursed pilot lives as a pig.</p></div>
+    <div class="card-info"><h3>Porco Rosso</h3><p class="card-meta">1992 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="Ocean Waves" data-year="1993" data-director="Tomomi Mochizuki" data-short="A quiet teenage love triangle." data-long="Taku recalls his complicated friendship and feelings involving Rikako and Yutaka during high school. A realistic, understated coming-of-age story." data-characters="Taku, Rikako, Yutaka">
+    <img src="ocean.png" alt="Ocean Waves">
+    <div class="card-hover-overlay"><p>A quiet teenage love triangle.</p></div>
+    <div class="card-info"><h3>Ocean Waves</h3><p class="card-meta">1993 · Tomomi Mochizuki</p></div>
+  </div>
+
+  <div class="card" data-group="takahata" data-title="Pom Poko" data-year="1994" data-director="Isao Takahata" data-short="Raccoon dogs defend their forest home." data-long="Tanuki use magical shapeshifting to stop urban development. The film blends comedy with environmental commentary." data-characters="The Tanuki clan">
+    <img src="pom.png" alt="Pom Poko">
+    <div class="card-hover-overlay"><p>Raccoon dogs defend their forest home.</p></div>
+    <div class="card-info"><h3>Pom Poko</h3><p class="card-meta">1994 · Isao Takahata</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="Whisper of the Heart" data-year="1995" data-director="Yoshifumi Kondō" data-short="A girl discovers her creative voice." data-long="Shizuku befriends a boy who inspires her writing dreams. It's a gentle story about ambition, love, and self-discovery." data-characters="Shizuku, Seiji, Baron">
+    <img src="whisper.png" alt="Whisper of the Heart">
+    <div class="card-hover-overlay"><p>A girl discovers her creative voice.</p></div>
+    <div class="card-info"><h3>Whisper of the Heart</h3><p class="card-meta">1995 · Yoshifumi Kondō</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Princess Mononoke" data-year="1997" data-director="Hayao Miyazaki" data-short="Humans and gods clash over nature." data-long="Ashitaka is caught between industrial humans and forest spirits. The film presents moral complexity in environmental conflict." data-characters="San, Ashitaka, Lady Eboshi">
+    <img src="mononole.png" alt="Princess Mononoke">
+    <div class="card-hover-overlay"><p>Humans and gods clash over nature.</p></div>
+    <div class="card-info"><h3>Princess Mononoke</h3><p class="card-meta">1997 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="takahata" data-title="My Neighbors the Yamadas" data-year="1999" data-director="Isao Takahata" data-short="Everyday life of a quirky family." data-long="Told in short vignettes, the Yamadas' story humorously captures ordinary family moments." data-characters="Takashi, Matsuko, Noboru">
+    <img src="yamadas.png" alt="My Neighbors the Yamadas">
+    <div class="card-hover-overlay"><p>Everyday life of a quirky family.</p></div>
+    <div class="card-info"><h3>My Neighbors the Yamadas</h3><p class="card-meta">1999 · Isao Takahata</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Spirited Away" data-year="2001" data-director="Hayao Miyazaki" data-short="A girl trapped in a spirit world." data-long="Chihiro must work in a bathhouse for spirits to save her parents. A richly imaginative tale about courage and identity." data-characters="Chihiro, Haku, No-Face, Yubaba">
+    <img src="spirited.png" alt="Spirited Away">
+    <div class="card-hover-overlay"><p>A girl trapped in a spirit world.</p></div>
+    <div class="card-info"><h3>Spirited Away</h3><p class="card-meta">2001 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="The Cat Returns" data-year="2002" data-director="Hiroyuki Morita" data-short="A girl visits the Cat Kingdom." data-long="Haru is drawn into a magical feline world after saving a cat prince. Lighthearted and whimsical." data-characters="Haru, Baron, Muta">
+    <img src="cat.png" alt="The Cat Returns">
+    <div class="card-hover-overlay"><p>A girl visits the Cat Kingdom.</p></div>
+    <div class="card-info"><h3>The Cat Returns</h3><p class="card-meta">2002 · Hiroyuki Morita</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Howl's Moving Castle" data-year="2004" data-director="Hayao Miyazaki" data-short="A cursed girl meets a mysterious wizard." data-long="Sophie is transformed into an old woman and joins Howl's walking castle. Themes include love, war, and self-worth." data-characters="Howl, Sophie, Calcifer">
+    <img src="howls.png" alt="Howl's Moving Castle">
+    <div class="card-hover-overlay"><p>A cursed girl meets a mysterious wizard.</p></div>
+    <div class="card-info"><h3>Howl's Moving Castle</h3><p class="card-meta">2004 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="Tales from Earthsea" data-year="2006" data-director="Gorō Miyazaki" data-short="A prince confronts darkness." data-long="Based on Ursula K. Le Guin's novels, the film follows Arren's journey toward balance and redemption." data-characters="Arren, Sparrowhawk, Therru">
+    <img src="tales.png" alt="Tales from Earthsea">
+    <div class="card-hover-overlay"><p>A prince confronts darkness.</p></div>
+    <div class="card-info"><h3>Tales from Earthsea</h3><p class="card-meta">2006 · Gorō Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="Ponyo" data-year="2008" data-director="Hayao Miyazaki" data-short="A magical fish wants to be human." data-long="Ponyo befriends a boy named Sosuke, disrupting nature's balance. A colorful tale of childhood love." data-characters="Ponyo, Sosuke, Fujimoto">
+    <img src="ponyo.png" alt="Ponyo">
+    <div class="card-hover-overlay"><p>A magical fish wants to be human.</p></div>
+    <div class="card-info"><h3>Ponyo</h3><p class="card-meta">2008 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="Arrietty" data-year="2010" data-director="Hiromasa Yonebayashi" data-short="Tiny people live unseen by humans." data-long="Arrietty befriends a human boy, risking her family's secret existence." data-characters="Arrietty, Sho">
+    <img src="arrietty.png" alt="Arrietty">
+    <div class="card-hover-overlay"><p>Tiny people live unseen by humans.</p></div>
+    <div class="card-info"><h3>Arrietty</h3><p class="card-meta">2010 · Hiromasa Yonebayashi</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="From Up on Poppy Hill" data-year="2011" data-director="Gorō Miyazaki" data-short="Teenagers save their school clubhouse." data-long="Set in 1960s Japan, the story blends young love with cultural preservation." data-characters="Umi, Shun">
+    <img src="from.png" alt="From Up on Poppy Hill">
+    <div class="card-hover-overlay"><p>Teenagers save their school clubhouse.</p></div>
+    <div class="card-info"><h3>From Up on Poppy Hill</h3><p class="card-meta">2011 · Gorō Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="The Wind Rises" data-year="2013" data-director="Hayao Miyazaki" data-short="The life of an airplane designer." data-long="Jirō Horikoshi pursues beauty in aircraft design amid war and loss." data-characters="Jirō, Naoko">
+    <img src="wind.png" alt="The Wind Rises">
+    <div class="card-hover-overlay"><p>The life of an airplane designer.</p></div>
+    <div class="card-info"><h3>The Wind Rises</h3><p class="card-meta">2013 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="takahata" data-title="The Tale of the Princess Kaguya" data-year="2013" data-director="Isao Takahata" data-short="A moon princess raised on Earth." data-long="Rendered in a painterly style, Kaguya's story reflects freedom and sorrow." data-characters="Kaguya, Sutemaru">
+    <img src="kaguya.png" alt="The Tale of the Princess Kaguya">
+    <div class="card-hover-overlay"><p>A moon princess raised on Earth.</p></div>
+    <div class="card-info"><h3>The Tale of the Princess Kaguya</h3><p class="card-meta">2013 · Isao Takahata</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="When Marnie Was There" data-year="2014" data-director="Hiromasa Yonebayashi" data-short="A girl meets a mysterious friend." data-long="Anna's friendship with Marnie helps her confront loneliness and identity." data-characters="Anna, Marnie">
+    <img src="marnie.png" alt="When Marnie Was There">
+    <div class="card-hover-overlay"><p>A girl meets a mysterious friend.</p></div>
+    <div class="card-info"><h3>When Marnie Was There</h3><p class="card-meta">2014 · Hiromasa Yonebayashi</p></div>
+  </div>
+
+  <div class="card" data-group="other" data-title="Earwig and the Witch" data-year="2020" data-director="Gorō Miyazaki" data-short="A clever girl raised by witches." data-long="Ghibli's first full 3D CGI film follows Earwig's life in a magical house." data-characters="Earwig, Bella Yaga">
+    <img src="earwig.png" alt="Earwig and the Witch">
+    <div class="card-hover-overlay"><p>A clever girl raised by witches.</p></div>
+    <div class="card-info"><h3>Earwig and the Witch</h3><p class="card-meta">2020 · Gorō Miyazaki</p></div>
+  </div>
+
+  <div class="card" data-group="miyazaki" data-title="The Boy and the Heron" data-year="2023" data-director="Hayao Miyazaki" data-short="A boy enters a surreal spirit realm." data-long="Mahito journeys through a dreamlike world shaped by grief, imagination, and legacy." data-characters="Mahito, the Heron">
+    <img src="boy.png" alt="The Boy and the Heron">
+    <div class="card-hover-overlay"><p>A boy enters a surreal spirit realm.</p></div>
+    <div class="card-info"><h3>The Boy and the Heron</h3><p class="card-meta">2023 · Hayao Miyazaki</p></div>
+  </div>
+
+  <div class="no-results" id="noResults">No films match your search. Try another title or director.</div>
+</section>
+
+<!-- FILM DETAIL OVERLAY -->
+<div id="movie-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
   <div class="overlay-content">
-    <span id="close-overlay">&times;</span>
-    <h2 id="overlay-title"></h2>
-    <p><strong>Year:</strong> <span id="overlay-year"></span></p>
-    <p><strong>Director:</strong> <span id="overlay-director"></span></p>
-    <p id="overlay-short"></p>
-    <p id="overlay-long"></p>
-    <p><strong>Popular Characters:</strong> <span id="overlay-characters"></span></p>
+    <button id="close-overlay" aria-label="Close">&times;</button>
+    <div class="overlay-grid">
+      <div class="overlay-poster">
+        <img id="overlay-img" src="" alt="">
+      </div>
+      <div class="overlay-body">
+        <p class="overlay-eyebrow">Studio Ghibli</p>
+        <h2 id="overlay-title"></h2>
+        <div class="overlay-meta-row">
+          <div class="overlay-meta-item"><strong>Year</strong><span id="overlay-year"></span></div>
+          <div class="overlay-meta-item"><strong>Director</strong><span id="overlay-director"></span></div>
+        </div>
+        <div class="overlay-divider"></div>
+        <p id="overlay-short"></p>
+        <p id="overlay-long"></p>
+        <div>
+          <p class="overlay-chars-label">Popular Characters</p>
+          <div class="overlay-chars-list" id="overlay-chars-list"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-  <!-- FOOTER -->
+<!-- FOOTER -->
 <footer class="site-footer">
-    <div class="footer-content">
-        <div class="sources">
-            <h4>Sources / Credits</h4>
-            <ul>
-                <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. Retrieved from <a href="https://www.ghibli.jp" target="_blank">https://www.ghibli.jp</a></li>
-            <li>IMDb. (n.d.). <em>Studio Ghibli movies list</em>. Retrieved from <a href="https://www.imdb.com/list/ls066662290/" target="_blank">https://www.imdb.com/list/ls066662290/</a></li>
-                <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. Retrieved from <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">https://ghibli.fandom.com/wiki/Ghibli_Wiki</a></li>
-           </ul>
-        </div>
-        <div class="repo-link">
-            <h4>Repository</h4>
-            <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
-        </div>
+  <div class="footer-content">
+    <div class="sources">
+      <h4>Sources / Credits</h4>
+      <ul>
+        <li>Studio Ghibli. (n.d.). <em>Official Studio Ghibli website</em>. <a href="https://www.ghibli.jp" target="_blank">ghibli.jp</a></li>
+        <li>IMDb. (n.d.). <em>Studio Ghibli movies list</em>. <a href="https://www.imdb.com/list/ls066662290/" target="_blank">imdb.com</a></li>
+        <li>Ghibli Wiki. (n.d.). <em>Ghibli Fandom Wiki</em>. <a href="https://ghibli.fandom.com/wiki/Ghibli_Wiki" target="_blank">ghibli.fandom.com</a></li>
+      </ul>
     </div>
-    <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
+    <div class="repo-link">
+      <h4>Repository</h4>
+      <p><a href="https://github.com/aravilalado/WDProjBeMacatangayVillados" target="_blank">View on GitHub</a></p>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2025 Whispers of Ghibli</p>
 </footer>
 
 <script>
- // CAROUSEL FUNCTIONALITY
-    // Show one carousel slide at a time, then rotate automatically.
-    const carousel = document.querySelector('.carousel');
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
+/* NAV TOGGLE */
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navUl').classList.toggle('open');
+});
 
-    function showSlide(index) {
-       slides.forEach((slide, i) => {
-          slide.style.display = i === index ? 'block' : 'none';
-     });
-    }
-
-// Initialize first slide.
-showSlide(currentIndex);
-
-// Auto-advance every 4 seconds.
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-}, 4000);
-
-    // Draw animated decorative leaves on the background canvas.
-    const canvas = document.getElementById('leaves');
-    const ctx = canvas.getContext('2d');
-    let w,h;
-    function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
-    window.addEventListener('resize',resize);
-    resize();
-    const leaves = Array.from({length:30},()=>({x:Math.random()*w, y:Math.random()*h, s:Math.random()*2+1, r:Math.random()*Math.PI}));
-    function animateLeaves(){
-        ctx.clearRect(0,0,w,h);
-        leaves.forEach(l=>{
-        l.y+=l.s*0.5; l.x+=Math.sin(l.y*0.01); l.r+=0.01;
-        if(l.y>h) l.y=-20;
-        ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.r);
-        ctx.fillStyle='rgba(120,150,120,0.6)';
-        ctx.beginPath(); ctx.ellipse(0,0,6,3,0,0,Math.PI*2); ctx.fill();
-        ctx.restore();
-        });
-        requestAnimationFrame(animateLeaves);
-    }
-    animateLeaves();
-
-
-      document.addEventListener('DOMContentLoaded', () => {
-    const moviesGrid = document.getElementById('movies-grid');
-    moviesGrid.classList.add('active');
-  });
-  
-    /*// Reveal sections when they enter the viewport.
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => { entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('active'); }) },{threshold:0.2});
-    reveals.forEach(r=>observer.observe(r));*/
-
-    // Cache movie overlay elements for quick updates on card click.
-    const overlay=document.getElementById('movie-overlay'); 
-    const overlayTitle=document.getElementById('overlay-title'); 
-    const overlayYear=document.getElementById('overlay-year'); 
-    const overlayDirector=document.getElementById('overlay-director'); 
-    const overlayShort=document.getElementById('overlay-short'); 
-    const overlayLong=document.getElementById('overlay-long'); 
-    const overlayCharacters=document.getElementById('overlay-characters'); 
-    const closeOverlay=document.getElementById('close-overlay');
-
-    // Open the overlay and populate it from clicked card data attributes.
-    document.querySelectorAll('.card').forEach(card=>{
-        card.addEventListener('click', ()=>{
-        card.classList.add('clicked');
-        overlay.style.display='flex';
-        overlayTitle.textContent=card.dataset.title;
-        overlayYear.textContent=card.dataset.year;
-        overlayDirector.textContent=card.dataset.director;
-        overlayShort.textContent=card.dataset.short;
-        overlayLong.textContent='';
-        overlayCharacters.textContent=card.dataset.characters;
-
-        // Type long description gradually for a cinematic reveal effect.
-        const longText=card.dataset.long;
-        let i=0;
-        function typeLong(){ if(i<longText.length){ overlayLong.textContent+=longText.charAt(i); i++; setTimeout(typeLong,20); } }
-        typeLong();
-
-        document.body.style.background='#1c261f'; 
-        });
+/* LEAVES */
+(function() {
+  const canvas = document.getElementById('leaves');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+  const leaves = Array.from({length: 25}, () => ({ x: Math.random()*w, y: Math.random()*h, s: Math.random()*2+0.5, r: Math.random()*Math.PI }));
+  function animate() {
+    ctx.clearRect(0,0,w,h);
+    leaves.forEach(l => {
+      l.y += l.s*0.4; l.x += Math.sin(l.y*0.01); l.r += 0.008;
+      if (l.y > h) l.y = -20;
+      ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.r);
+      ctx.fillStyle = 'rgba(120,150,120,0.5)';
+      ctx.beginPath(); ctx.ellipse(0,0,6,3,0,0,Math.PI*2); ctx.fill();
+      ctx.restore();
     });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 
-    // Close overlay by button or Escape key and clear temporary UI state.
-    closeOverlay.addEventListener('click',()=>{ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; });
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ overlay.style.display='none'; document.querySelectorAll('.card').forEach(c=>c.classList.remove('clicked')); overlayLong.textContent=''; } });
-    </script>
-    </body>
-    </html>
+/* CAROUSEL */
+(function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsEl = document.getElementById('carouselDots');
+  let cur = 0;
+  slides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i===0?' active':'');
+    d.addEventListener('click', () => go(i));
+    dotsEl.appendChild(d);
+  });
+  function go(i) {
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+  }
+  setInterval(() => go((cur+1) % slides.length), 4200);
+})();
+
+/* FILTER + SEARCH */
+const allCards = document.querySelectorAll('.card[data-title]');
+const noResults = document.getElementById('noResults');
+
+function applyFilters() {
+  const activeBtn = document.querySelector('.filter-btn.active');
+  const group = activeBtn ? activeBtn.dataset.filter : 'all';
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  let visible = 0;
+  allCards.forEach(card => {
+    const matchGroup = group === 'all' || card.dataset.group === group;
+    const matchQuery = !query || card.dataset.title.toLowerCase().includes(query) || card.dataset.director.toLowerCase().includes(query);
+    const show = matchGroup && matchQuery;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('filmCountNum').textContent = visible;
+  noResults.classList.toggle('visible', visible === 0);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+/* OVERLAY */
+const overlay = document.getElementById('movie-overlay');
+
+function openOverlay(card) {
+  document.getElementById('overlay-title').textContent = card.dataset.title;
+  document.getElementById('overlay-year').textContent  = card.dataset.year;
+  document.getElementById('overlay-director').textContent = card.dataset.director;
+  document.getElementById('overlay-short').textContent = card.dataset.short;
+  document.getElementById('overlay-img').src = card.querySelector('img').src;
+  document.getElementById('overlay-img').alt = card.dataset.title;
+
+  const longEl = document.getElementById('overlay-long');
+  longEl.textContent = '';
+  let i = 0; const text = card.dataset.long;
+  function type() { if (i < text.length) { longEl.textContent += text[i++]; setTimeout(type, 18); } }
+  type();
+
+  const charsList = document.getElementById('overlay-chars-list');
+  charsList.innerHTML = '';
+  card.dataset.characters.split(',').forEach(c => {
+    const tag = document.createElement('span');
+    tag.className = 'overlay-char-tag';
+    tag.textContent = c.trim();
+    charsList.appendChild(tag);
+  });
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('overlay-long').textContent = '';
+}
+
+allCards.forEach(card => card.addEventListener('click', () => openOverlay(card)));
+document.getElementById('close-overlay').addEventListener('click', closeOverlay);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+</script>
+</body>
+</html>
